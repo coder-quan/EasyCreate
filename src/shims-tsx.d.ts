@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Autor: dongquan.zhang
+ * @LastEditors: dongquan.zhang
+ */
 import Vue, { VNode } from 'vue';
 
 declare global {
