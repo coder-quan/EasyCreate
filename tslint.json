@@ -5,6 +5,7 @@
   // "rules": {
   // }
   "rules": {
+    "member-ordering": false,
     "interface-name": [true, "never-prefix"],
     // 忽略导入顺序
     "ordered-imports": false,
@@ -278,7 +279,8 @@
     "wrap-iife": [2, "any"],
     "yield-star-spacing": [2, "both"],
     "yoda": [2, "never"],
-    "prefer-const": true,
+    //关闭只能用const声明变量
+    "prefer-const": false,
     "object-curly-spacing": [
       2,
       "always",

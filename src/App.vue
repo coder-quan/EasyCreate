@@ -1,11 +1,7 @@
-<!--
- * @Description: 
- * @Autor: dongquan.zhang
- * @LastEditors: dongquan.zhang
--->
 <template>
   <div id="app">
     <div id="nav">
+      <nav-bar></nav-bar>
       <router-link to="/">Home</router-link>
       |
       <router-link to="/about">About</router-link>
@@ -16,8 +12,12 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
+  import NavBar from './views/NavBar/NavBar.vue';
 
-  @Component
+  @Component({
+    name: 'App',
+    components: { NavBar },
+  })
   export default class App extends Vue {}
 </script>
 
@@ -31,8 +31,6 @@
   }
 
   #nav {
-    padding: 30px;
-
     a {
       font-weight: bold;
       color: #2c3e50;
