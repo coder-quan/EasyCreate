@@ -27,10 +27,6 @@
       themeModule.GetTheme();
       this.theme = themeModule.theme;
       this.color = themeModule.fontColor;
-    }
-
-    private mounted() {
-      themeModule.GetTheme();
       this.backgroundColor = themeModule.theme;
     }
   }

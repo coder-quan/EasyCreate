@@ -27,29 +27,28 @@ class Theme extends VuexModule implements ThemeState {
   }
 
   @Action
-  public GetTheme() {
+  public async GetTheme() {
     let color: string | null = localStorage.getItem('theme');
-    if (color) this.Set_Theme(color);
-    else this.ResetTheme();
-    this.ResetColor(color as string);
+    if (color) await this.Set_Theme(color);
+    else await this.ResetTheme();
+    await this.ResetColor(color as string);
     return this.theme;
   }
 
   @Action
-  public ResetTheme(color: string = '#1989fa') {
-    console.log(color);
+  public async ResetTheme(color: string = '#1989fa') {
     localStorage.setItem('theme', color);
-    this.Set_Theme(color);
-    this.GetTheme();
+    await this.Set_Theme(color);
+    await this.GetTheme();
   }
 
   @Action
-  public ResetColor(themeColor: string = '#e67604') {
+  public async ResetColor(themeColor: string = '#e67604') {
     let color: string = '';
     color =
       '#' +
       (parseInt('ffffff', 16) - parseInt(themeColor.slice(1), 16)).toString(16);
-    this.Set_Color(color);
+    await this.Set_Color(color);
   }
 }
 
