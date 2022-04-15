@@ -16,9 +16,4 @@
   export default class MainView extends Vue {}
 </script>
 
-<style lang="scss" scoped>
-  .main-view {
-    height: 100%;
-    background-color: #000;
-  }
-</style>
+<style lang="scss" scoped></style>

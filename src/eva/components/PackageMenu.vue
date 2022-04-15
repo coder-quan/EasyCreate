@@ -7,7 +7,7 @@
       :text-color="color.color"
       :active-text-color="color.color"
     >
-      <el-submenu v-for="(submenu, key) in menu" :index="key + 'a'" :key="key">
+      <el-submenu v-for="(submenu, key) in menu" :index="key + ''" :key="key">
         <template slot="title">
           <i :class="submenu.icon"></i>
           <span slot="title">{{ submenu.title }}</span>
@@ -20,7 +20,7 @@
           <span slot="title">{{ item.title }}</span>
           <el-menu-item
             v-for="(subItem, subIndex) in item.value"
-            :index="subIndex + 'a'"
+            :index="subIndex + ''"
             :key="subIndex"
           >
             {{ subItem }}
@@ -49,5 +49,6 @@
 <style lang="scss" scoped>
   .menu {
     height: calc(100vh - 56px);
+    border: 0;
   }
 </style>

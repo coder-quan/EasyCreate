@@ -23,11 +23,11 @@
     private menu: MenuType[] = [
       {
         icon: 'el-icon-location',
-        title: '导航',
+        title: '撤所',
         submenu: [
           {
-            title: '导航一',
-            value: ['嗨害嗨'],
+            title: '老八',
+            value: ['嗨害嗨', '干了xdm'],
           },
         ],
       },

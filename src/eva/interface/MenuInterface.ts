@@ -1,5 +1,5 @@
 /*
- * @Description:
+ * @Description: 限制菜单参数的接口
  * @Autor: dongquan.zhang
  * @LastEditors: dongquan.zhang
  */
