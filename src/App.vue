@@ -1,10 +1,15 @@
+<!--
+ * @Description: 
+ * @Autor: dongquan.zhang
+ * @LastEditors: dongquan.zhang
+-->
 <template>
   <div id="app">
     <div id="nav">
-      <nav-bar></nav-bar>
-      <router-link to="/">Home</router-link>
+      <!-- <nav-bar></nav-bar> -->
+      <!-- <router-link to="/">Home</router-link>
       |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> -->
     </div>
     <router-view />
   </div>

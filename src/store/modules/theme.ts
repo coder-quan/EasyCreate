@@ -14,8 +14,8 @@ export interface ThemeState {
 
 @Module({ dynamic: true, store, name: 'theme' })
 class Theme extends VuexModule implements ThemeState {
-  public theme: string = '#1989fa';
-  public fontColor: string = '#e67604';
+  public theme: string = '#42b983';
+  public fontColor: string = '#bd467c';
 
   @Mutation
   private Set_Theme(theme: string) {
@@ -31,8 +31,6 @@ class Theme extends VuexModule implements ThemeState {
     let color: string | null = localStorage.getItem('theme');
     if (color) await this.Set_Theme(color);
     else await this.ResetTheme();
-    await this.ResetColor(color as string);
-    return this.theme;
   }
 
   @Action
@@ -45,6 +43,11 @@ class Theme extends VuexModule implements ThemeState {
   @Action
   public async ResetColor(themeColor: string = '#e67604') {
     let color: string = '';
+    if (themeColor.length === 4) {
+      let result: string = '#';
+      for (let letter of themeColor) result += letter + letter;
+      themeColor = result;
+    }
     color =
       '#' +
       (parseInt('ffffff', 16) - parseInt(themeColor.slice(1), 16)).toString(16);

@@ -1,10 +1,15 @@
 <template>
-  <div class="nav-bar" :style="{ '--color': theme, '--font-color': color }">
-    <div class="left" :style="{}">EasyCreate</div>
-    <div class="center"></div>
-    <div class="right">
-      <span>主题颜色</span>
-      <el-color-picker v-model="backgroundColor"></el-color-picker>
+  <div class="nav-bar-container">
+    <div class="nav-bar" :style="{ '--color': theme, '--font-color': color }">
+      <div class="left" :style="{}">EasyCreate</div>
+      <div class="center"></div>
+      <div class="right">
+        <span>主题颜色</span>
+        <el-color-picker v-model="backgroundColor"></el-color-picker>
+      </div>
+    </div>
+    <div class="main">
+      <slot v-bind="{ theme: theme, color: color }"></slot>
     </div>
   </div>
 </template>
@@ -26,6 +31,7 @@
       if (oldVal) themeModule.ResetTheme(newVal);
       themeModule.GetTheme();
       this.theme = themeModule.theme;
+      themeModule.ResetColor(this.theme);
       this.color = themeModule.fontColor;
       this.backgroundColor = themeModule.theme;
     }
@@ -48,11 +54,11 @@
     }
     .left {
       text-align: left;
-      padding-left: 30px;
+      padding-left: 40px;
       font: 30px fantasy;
     }
     ::v-deep .right {
-      color: white;
+      // color: var(--font-color);
       display: flex;
       justify-content: flex-end;
       span {
@@ -68,5 +74,8 @@
         }
       }
     }
+  }
+  .main {
+    display: flex;
   }
 </style>
