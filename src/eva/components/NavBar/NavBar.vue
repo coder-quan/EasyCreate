@@ -2,7 +2,7 @@
   <div class="nav-bar-container">
     <div class="nav-bar" :style="{ '--color': theme, '--font-color': color }">
       <div class="left">
-        <el-button size="mini">
+        <el-button size="mini" @click="addPage">
           新建
           <i class="el-icon-document"></i>
         </el-button>
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Watch } from 'vue-property-decorator';
+  import { Vue, Component, Watch, Emit } from 'vue-property-decorator';
   import { themeModule } from '@/store/modules/theme';
 
   @Component({
@@ -48,6 +48,11 @@
       themeModule.ResetColor(this.theme);
       this.color = themeModule.fontColor;
       this.backgroundColor = themeModule.theme;
+    }
+
+    @Emit('on-add')
+    private addPage() {
+      return true;
     }
   }
 </script>

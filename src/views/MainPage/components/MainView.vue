@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component } from 'vue-property-decorator';
+  import { Vue, Component, Emit } from 'vue-property-decorator';
 
   type iconType = 'preview' | 'cancel' | 'empty';
   @Component({
@@ -30,25 +30,9 @@
   })
   export default class MainView extends Vue {
     // 根据点击的图标触发相应的事件
+    @Emit('on-check')
     private clickIcon(type: iconType) {
-      if (type === 'preview') this.preview();
-      else if (type === 'cancel') this.cancel();
-      else this.empty();
-    }
-
-    // 预览页面
-    private preview() {
-      console.log(1111);
-    }
-
-    // 取消操作
-    private cancel() {
-      console.log(2222);
-    }
-
-    // 删除页面
-    private empty() {
-      console.log(3333);
+      return type;
     }
   }
 </script>

@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <nav-bar>
+    <nav-bar @on-add="showView">
       <template v-slot:default="slotProps">
         <package-menu :menu="menu" :color="slotProps"></package-menu>
-        <main-view v-if="isShowView"></main-view>
+        <main-view v-if="isShowView" @on-check="checkIcon"></main-view>
       </template>
     </nav-bar>
   </div>
@@ -19,7 +19,7 @@
     components: { MainView },
   })
   export default class MainPage extends Vue {
-    private isShowView: boolean = true;
+    private isShowView: boolean = false;
     private menu: MenuType[] = [
       {
         icon: 'el-icon-location',
@@ -32,6 +32,14 @@
         ],
       },
     ];
+
+    private showView(flag: boolean) {
+      this.isShowView = flag;
+    }
+
+    private checkIcon(type: string) {
+      if (type === 'empty') this.showView(false);
+    }
   }
 </script>
 
