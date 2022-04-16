@@ -3,7 +3,7 @@
     <nav-bar>
       <template v-slot:default="slotProps">
         <package-menu :menu="menu" :color="slotProps"></package-menu>
-        <main-view></main-view>
+        <main-view v-if="isShowView"></main-view>
       </template>
     </nav-bar>
   </div>
@@ -20,6 +20,7 @@
     components: { NavBar, MainView },
   })
   export default class MainPage extends Vue {
+    private isShowView: boolean = true;
     private menu: MenuType[] = [
       {
         icon: 'el-icon-location',

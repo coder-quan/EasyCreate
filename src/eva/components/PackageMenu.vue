@@ -47,8 +47,15 @@
 </script>
 
 <style lang="scss" scoped>
+  .menu-container {
+    width: 40px;
+  }
   .menu {
-    height: calc(100vh - 56px);
+    height: calc(100vh - var(--navbar-line-height) - 1px);
     border: 0;
+    width: 40px;
+  }
+  ::v-deep .menu .el-submenu__title {
+    padding: 0 !important;
   }
 </style>

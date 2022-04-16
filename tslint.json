@@ -93,6 +93,7 @@
     "handle-callback-err": [2, "^(err|error)$"],
     "indent": [true, "spaces", 2],
     "jsx-quotes": [2, "prefer-single"],
+    "jsdoc-format": true, // 注释基于jsdoc风格
     "key-spacing": [
       2,
       {

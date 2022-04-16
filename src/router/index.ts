@@ -5,15 +5,13 @@
  */
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
 import About from '../views/MainPage/MainPage.vue';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'Home',
-    component: About,
+    redirect: '/about',
   },
   {
     path: '/about',

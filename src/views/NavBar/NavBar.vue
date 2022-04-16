@@ -1,7 +1,17 @@
 <template>
   <div class="nav-bar-container">
     <div class="nav-bar" :style="{ '--color': theme, '--font-color': color }">
-      <div class="left" :style="{}">EasyCreate</div>
+      <div class="left">
+        <el-button size="mini">
+          新建
+          <i class="el-icon-document"></i>
+        </el-button>
+        <el-button size="mini">
+          选择模板
+          <i class="el-icon-folder-add"></i>
+        </el-button>
+      </div>
+      <div class="center">EasyCreate</div>
       <div class="right">
         <el-button size="mini">
           导出页面
@@ -45,7 +55,7 @@
 <style lang="scss" scoped>
   .nav-bar {
     display: flex;
-    height: 56px;
+    line-height: var(--navbar-line-height);
     width: 100%;
     background-color: var(--color);
     justify-content: center;
@@ -53,19 +63,16 @@
     color: var(--font-color);
     border-bottom: solid 1px var(--color-background);
     .left,
+    .center,
     .right {
       flex: 1;
     }
-    .left {
-      text-align: left;
-      padding-left: 40px;
-      font: 30px fantasy;
-    }
+    ::v-deep .left,
     ::v-deep .right {
-      line-height: 56px;
+      line-height: var(--navbar-line-height);
       display: flex;
-      justify-content: flex-end;
-      span {
+      span,
+      .el-button span {
         margin-right: 6px;
         font-size: 16px;
       }
@@ -73,13 +80,21 @@
         color: var(--font-color);
         background-color: var(--color);
         border: 0;
-        border-bottom: solid 1px var(--color-background);
-        .el-icon-download {
-          font-size: 16px;
-        }
       }
+      .el-button:hover {
+        color: blue;
+      }
+      .el-button + .el-button {
+        margin-left: -10px;
+      }
+    }
+    .left {
+      justify-content: flex-start;
+    }
+    ::v-deep .right {
+      justify-content: flex-end;
       .el-color-picker {
-        line-height: 56px;
+        line-height: var(--navbar-line-height);
         padding-right: 30px;
         padding-top: 3px;
         width: 17px;
@@ -89,6 +104,10 @@
           height: 17px;
         }
       }
+    }
+    .center {
+      text-align: center;
+      font: 30px fantasy;
     }
   }
   .main {

@@ -11,7 +11,6 @@ export interface ThemeState {
   theme: string;
   fontColor: string;
 }
-
 @Module({ dynamic: true, store, name: 'theme' })
 class Theme extends VuexModule implements ThemeState {
   public theme: string = '#42b983';
