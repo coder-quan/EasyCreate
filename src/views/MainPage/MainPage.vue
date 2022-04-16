@@ -11,13 +11,12 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
-  import NavBar from '../NavBar/NavBar.vue';
   import MainView from './components/MainView.vue';
   import { MenuType } from '@/eva/interface/MenuInterface';
 
   @Component({
     name: 'MainPage',
-    components: { NavBar, MainView },
+    components: { MainView },
   })
   export default class MainPage extends Vue {
     private isShowView: boolean = true;

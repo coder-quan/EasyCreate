@@ -33,7 +33,7 @@
 
 <script lang="ts">
   import { Component, Vue, Prop } from 'vue-property-decorator';
-  import { MenuType } from '../interface/MenuInterface';
+  import { MenuType } from '../../interface/MenuInterface';
   @Component({
     name: 'PackageMenu',
   })

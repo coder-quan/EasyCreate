@@ -17,11 +17,10 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
-  import NavBar from './views/NavBar/NavBar.vue';
+  // import NavBar from './views/NavBar/NavBar.vue';
 
   @Component({
     name: 'App',
-    components: { NavBar },
   })
   export default class App extends Vue {}
 </script>
