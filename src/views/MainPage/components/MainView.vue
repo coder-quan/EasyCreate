@@ -78,6 +78,7 @@
       .el-icon-refresh-left:hover::after,
       .el-icon-delete:hover::after {
         content: attr(data-title);
+        font-size: 14px;
         margin: 20px 0 0 -26px;
         border: 1px solid #ddd;
         border-radius: 5px;
