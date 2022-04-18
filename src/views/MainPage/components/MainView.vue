@@ -17,7 +17,7 @@
         @click="clickIcon('empty')"
       ></i>
     </div>
-    <div class="view"></div>
+    <slot></slot>
   </div>
 </template>
 
@@ -39,7 +39,7 @@
 
 <style lang="scss" scoped>
   .main-view {
-    background-color: #fff;
+    // background-color: #fff;
     width: 100vw;
     display: flex;
     flex-direction: column;

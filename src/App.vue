@@ -5,24 +5,25 @@
 -->
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <nav-bar></nav-bar> -->
-      <!-- <router-link to="/">Home</router-link>
-      |
-      <router-link to="/about">About</router-link> -->
-    </div>
-    <router-view />
+    <div id="nav" v-if="isMobile">暂不支持移动端，请使用电脑访问</div>
+    <router-view v-else />
   </div>
 </template>
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
-  // import NavBar from './views/NavBar/NavBar.vue';
 
   @Component({
     name: 'App',
   })
-  export default class App extends Vue {}
+  export default class App extends Vue {
+    get isMobile() {
+      let result = window.navigator.userAgent.match(
+        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+      );
+      return !!result;
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -32,16 +33,16 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    width: 100vw;
+    height: 100vh;
   }
 
   #nav {
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
-      }
-    }
+    width: 240px;
+    font-weight: bold;
+    color: #2c3e50;
+    position: fixed;
+    top: 50%;
+    left: calc(50% - 120px);
   }
 </style>

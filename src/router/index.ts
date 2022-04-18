@@ -7,6 +7,7 @@ import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import MainPage from '../views/MainPage/MainPage.vue';
 import Error from '../views/Error/Error.vue';
+import PreviewPage from '../views/PreviewPage/PreviewPage.vue';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
@@ -20,6 +21,15 @@ const routes: RouteConfig[] = [
     component: MainPage,
     beforeEnter(to, from, next) {
       document.title = '主页';
+      next();
+    },
+  },
+  {
+    path: '/preview',
+    name: 'preview',
+    component: PreviewPage,
+    beforeEnter(to, from, next) {
+      document.title = '预览';
       next();
     },
   },

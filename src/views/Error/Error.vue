@@ -30,7 +30,8 @@
     font-size: 20px;
   }
   .back {
-    display: block;
+    width: 100px;
+    margin-left: 100px;
     text-decoration: underline;
     &:hover {
       color: rgb(0, 152, 152);
