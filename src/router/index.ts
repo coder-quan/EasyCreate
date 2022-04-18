@@ -5,18 +5,31 @@
  */
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import About from '../views/MainPage/MainPage.vue';
+import MainPage from '../views/MainPage/MainPage.vue';
+import Error from '../views/Error/Error.vue';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
     path: '/',
-    redirect: '/about',
+    redirect: '/main',
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About,
+    path: '/main',
+    name: 'main',
+    component: MainPage,
+    beforeEnter(to, from, next) {
+      document.title = '主页';
+      next();
+    },
+  },
+  {
+    path: '*',
+    component: Error,
+    beforeEnter(to, from, next) {
+      document.title = '出错啦';
+      next();
+    },
   },
 ];
 

@@ -13,8 +13,8 @@ export interface ThemeState {
 }
 @Module({ dynamic: true, store, name: 'theme' })
 class Theme extends VuexModule implements ThemeState {
-  public theme: string = '#42b983';
-  public fontColor: string = '#bd467c';
+  public theme: string = '##403C3C';
+  public fontColor: string = '##BFC3C3';
 
   @Mutation
   private Set_Theme(theme: string) {

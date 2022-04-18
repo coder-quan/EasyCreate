@@ -66,7 +66,7 @@
     justify-content: center;
     align-items: center;
     color: var(--font-color);
-    border-bottom: solid 1px var(--color-background);
+    border-bottom: solid 1px black;
     .left,
     .center,
     .right {

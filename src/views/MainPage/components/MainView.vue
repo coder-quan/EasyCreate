@@ -13,7 +13,7 @@
       ></i>
       <i
         class="el-icon-delete"
-        data-title="清空画布"
+        data-title="删除画布"
         @click="clickIcon('empty')"
       ></i>
     </div>
