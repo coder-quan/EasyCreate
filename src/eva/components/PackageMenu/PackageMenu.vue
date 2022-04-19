@@ -22,6 +22,7 @@
             v-for="(subItem, subIndex) in item.value"
             :index="subIndex + ''"
             :key="subIndex"
+            @click="clickMenu(subItem)"
           >
             {{ subItem }}
           </el-menu-item>
@@ -32,17 +33,22 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue, Prop } from 'vue-property-decorator';
+  import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
   import { MenuType } from '../../interface/MenuInterface';
+  import { Menu } from '../../data/Menu';
   @Component({
     name: 'PackageMenu',
   })
   export default class PackageMenu extends Vue {
-    @Prop(Array)
-    private readonly menu!: MenuType[];
+    private menu: MenuType[] = Menu;
 
     @Prop(Object)
     private readonly color!: object;
+
+    @Emit()
+    private clickMenu(title: string) {
+      return title;
+    }
   }
 </script>
 

@@ -5,8 +5,10 @@
 -->
 <template>
   <div id="app">
-    <div id="nav" v-if="isMobile">暂不支持移动端，请使用电脑访问</div>
-    <router-view v-else />
+    <keep-alive>
+      <div id="nav" v-if="isMobile">暂不支持移动端，请使用电脑访问</div>
+      <router-view v-else />
+    </keep-alive>
   </div>
 </template>
 

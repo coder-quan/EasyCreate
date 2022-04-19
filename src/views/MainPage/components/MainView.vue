@@ -1,21 +1,15 @@
 <template>
   <div class="main-view">
     <div class="edit">
-      <i
-        class="el-icon-full-screen"
-        data-title="预览"
-        @click="clickIcon('preview')"
-      ></i>
-      <i
-        class="el-icon-refresh-left"
-        data-title="撤销"
-        @click="clickIcon('cancel')"
-      ></i>
-      <i
-        class="el-icon-delete"
-        data-title="删除画布"
-        @click="clickIcon('empty')"
-      ></i>
+      <el-tooltip class="item" effect="light" content="预览">
+        <i class="el-icon-full-screen" @click="clickIcon('preview')"></i>
+      </el-tooltip>
+      <el-tooltip class="item" effect="light" content="撤销">
+        <i class="el-icon-refresh-left" @click="clickIcon('cancel')"></i>
+      </el-tooltip>
+      <el-tooltip class="item" effect="light" content="删除画布">
+        <i class="el-icon-delete" @click="clickIcon('empty')"></i>
+      </el-tooltip>
     </div>
     <slot></slot>
   </div>
@@ -39,7 +33,6 @@
 
 <style lang="scss" scoped>
   .main-view {
-    // background-color: #fff;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -57,19 +50,6 @@
       .el-icon-refresh-left:hover,
       .el-icon-delete:hover {
         color: blue;
-      }
-      .el-icon-full-screen:hover::after,
-      .el-icon-refresh-left:hover::after,
-      .el-icon-delete:hover::after {
-        content: attr(data-title);
-        font-size: 14px;
-        margin: 20px 0 0 -26px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        color: #333;
-        background-color: #fff;
-        position: fixed;
-        width: auto;
       }
     }
   }
