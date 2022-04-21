@@ -11,7 +11,9 @@
         <i class="el-icon-delete" @click="clickIcon('empty')"></i>
       </el-tooltip>
     </div>
-    <slot></slot>
+    <div class="preview">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -34,8 +36,10 @@
 <style lang="scss" scoped>
   .main-view {
     width: 100vw;
+    height: calc(100vh - var(--navbar-line-height) - 1px);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     ::v-deep .edit {
       height: 26px;
       background-color: var(--color-background);
@@ -50,6 +54,16 @@
       .el-icon-refresh-left:hover,
       .el-icon-delete:hover {
         color: blue;
+      }
+    }
+    .preview {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      scrollbar-width: none; //火狐隐藏滚动条
+      &::-webkit-scrollbar {
+        //谷歌隐藏滚动条
+        display: none;
       }
     }
   }

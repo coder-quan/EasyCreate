@@ -3,3 +3,4 @@
  * @Autor: dongquan.zhang
  * @LastEditors: dongquan.zhang
  */
+export const hasNotSubtag: string[] = ['input', 'button', 'a'];

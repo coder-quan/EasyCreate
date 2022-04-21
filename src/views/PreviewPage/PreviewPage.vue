@@ -5,21 +5,32 @@
       @back="goBack"
       content="主页"
     ></el-page-header>
-    <div class="main-view">hello world</div>
+    <div class="main-view">
+      <render-element
+        v-for="(item, index) in arr"
+        :element="item"
+        :key="index"
+      ></render-element>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator';
+  import { pageModule } from '@/store/modules/page';
 
   @Component({
     name: 'PreviewPage',
   })
   export default class PreviewPage extends Vue {
+    private arr: object[] = [];
     // 是否预览
     @Prop({ type: Boolean, default: true })
     private readonly isPreview!: boolean;
 
+    private created() {
+      this.arr = pageModule.pageData;
+    }
     private goBack() {
       this.$router.push('/main');
     }

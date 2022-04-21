@@ -47,4 +47,7 @@
     top: 50%;
     left: calc(50% - 120px);
   }
+  .show-border {
+    border: 1px solid black;
+  }
 </style>
