@@ -55,6 +55,7 @@
 <style lang="scss" scoped>
   .menu-container {
     width: 40px;
+    text-align: center;
   }
   .menu {
     height: calc(100vh - var(--navbar-line-height) - 1px);

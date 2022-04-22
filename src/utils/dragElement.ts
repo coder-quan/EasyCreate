@@ -36,7 +36,7 @@ export async function addElement(
 /**
  * @description: 遍历数组找到类名对应的元素
  */
-function catchItem(
+export function catchItem(
   targetArray: ElementInterface[],
   className: string[],
   fn: (targetArray: ElementInterface[], index: number) => void

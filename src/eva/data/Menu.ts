@@ -11,7 +11,7 @@ export const Menu: MenuType[] = [
     submenu: [
       {
         title: '表单元素',
-        value: ['按钮', '输入框', '密码框', '单选框', '多选框', '下拉列表'],
+        value: ['按钮', '输入框', '密码框', '单选框', '多选框'],
       },
     ],
   },
@@ -50,7 +50,17 @@ export const Menu: MenuType[] = [
     submenu: [
       {
         title: '组件',
-        value: ['表格', '标签页', '轮播图'],
+        value: ['表格', '导航栏', '走马灯', '下拉表'],
+      },
+    ],
+  },
+  {
+    icon: 'el-icon-s-grid',
+    title: '容器',
+    submenu: [
+      {
+        title: '容器',
+        value: ['div', 'span'],
       },
     ],
   },

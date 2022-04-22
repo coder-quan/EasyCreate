@@ -57,7 +57,7 @@
     .main-view {
       height: 100%;
       width: 100%;
-      background-color: #fff;
+      // background-color: #fff;
       overflow-y: scroll;
       scrollbar-width: none;
       &::-webkit-scrollbar {

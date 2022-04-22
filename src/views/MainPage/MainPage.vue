@@ -8,6 +8,11 @@
         </main-view>
       </template>
     </nav-bar>
+    <add-tag-tip
+      :isClose="isClose"
+      @check="checkClassName"
+      @cancel="cancel"
+    ></add-tag-tip>
   </div>
 </template>
 
@@ -15,13 +20,19 @@
   import { Vue, Component } from 'vue-property-decorator';
   import MainView from './components/MainView.vue';
   import PreviewPage from '../PreviewPage/PreviewPage.vue';
+  import AddTagTip from './components/AddTagTip.vue';
+  import { basisComponents, template } from '@/eva/data/components';
+  import { ElementInterface } from '@/eva/interface/ElementInterface';
+  import { pageModule } from '@/store/modules/page';
 
   @Component({
     name: 'MainPage',
-    components: { MainView, PreviewPage },
+    components: { MainView, PreviewPage, AddTagTip },
   })
   export default class MainPage extends Vue {
     private isShowView: boolean = false;
+    private component: string = '';
+    private isClose: boolean = false;
 
     // 回到主页时判断是否已创建页面，已创建则恢复，否则空白
     // public activated() {}
@@ -36,7 +47,26 @@
     }
 
     private clickMenu(title: string) {
-      console.log(title);
+      if (this.isShowView) this.isClose = true;
+      else
+        this.$alert('请先新建页面或选择模板', '', {
+          confirmButtonText: '确定',
+        });
+      this.component = title;
+    }
+
+    private checkClassName(className: string) {
+      let element: ElementInterface = Object.assign({}, template);
+      let html: string = basisComponents.get(this.component)!;
+      this.isClose = false;
+      if (html) element.html = html;
+      else element.html = 'div';
+      element.class = className;
+      pageModule.changePageData(element);
+    }
+
+    private cancel() {
+      this.isClose = false;
     }
   }
 </script>

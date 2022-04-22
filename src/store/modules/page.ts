@@ -20,86 +20,20 @@ class Page extends VuexModule {
     {
       html: 'div',
       class: 'first-div',
-      arr: [
-        {
-          html: 'button',
-          class: 'first-button',
-          text: 'hello',
-        },
-        {
-          html: 'span',
-          class: 'first-span',
-          text: ' world',
-          arr: [
-            {
-              html: 'a',
-              class: 'first-a',
-              text: ' www.baidu.com',
-            },
-          ],
-        },
-        {
-          html: 'input',
-          class: 'first-input',
-          text: 'hello',
-          arr: [
-            {
-              html: 'button',
-              text: 'ok',
-              class: 'second-button',
-            },
-          ],
-        },
-        {
-          html: 'div',
-          class: 'second-div',
-          arr: [
-            {
-              html: 'div',
-              class: 'third-div',
-              arr: [
-                {
-                  html: 'button',
-                  class: 'third-button',
-                  text: 'hello',
-                },
-                {
-                  html: 'button',
-                  class: 'forth-button',
-                  text: 'world',
-                },
-              ],
-            },
-            {
-              html: 'div',
-              class: 'fifth-div',
-              arr: [
-                {
-                  html: 'button',
-                  class: 'fifth-button',
-                  text: 'hello',
-                },
-                {
-                  html: 'button',
-                  class: 'six-button',
-                  text: 'world',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          html: 'h1',
-          class: 'first-h',
-          text: 'hello',
-        },
-      ],
+      arr: [],
     },
   ];
+  // 拖拽元素的类名
   public dragStartElement: string[] = [];
+  // 目标元素的类名
   public dragElement: string[] = [];
+  // 上一次拖拽成功的类名
   public lastAdd: string[] = [];
 
+  @Mutation
+  private Set_PageData(element: ElementInterface) {
+    this.pageData[0].arr?.push(element);
+  }
   @Mutation
   private Set_DragStartElement(classArray: string[]) {
     this.dragStartElement = classArray;
@@ -113,6 +47,11 @@ class Page extends VuexModule {
   @Mutation
   private Set_LastAdd(classArray: string[]) {
     this.lastAdd = classArray;
+  }
+
+  @Action
+  public changePageData(element: ElementInterface) {
+    this.Set_PageData(element);
   }
 
   @Action
