@@ -21,6 +21,7 @@ class Page extends VuexModule {
       html: 'div',
       class: 'first-div',
       arr: [],
+      style: {},
     },
   ];
   // 拖拽元素的类名

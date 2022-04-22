@@ -3,7 +3,7 @@
  * @Autor: dongquan.zhang
  * @LastEditors: dongquan.zhang
  */
-import { ElementInterface } from '../interface/elementInterface';
+import { ElementInterface } from '../interface/ElementInterface';
 export const hasNotSubtag: string[] = ['input', 'button', 'a'];
 
 export const basisComponents: Map<string, string> = new Map([
@@ -33,4 +33,5 @@ export const template: ElementInterface = {
   html: '',
   class: '',
   text: 'hello world',
+  style: {},
 };

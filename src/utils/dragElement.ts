@@ -1,4 +1,4 @@
-import { ElementInterface } from '@/eva/interface/elementInterface';
+import { ElementInterface } from '@/eva/interface/ElementInterface';
 import { pageModule } from '@/store/modules/page';
 import { hasNotSubtag } from '@/eva/data/components';
 import Vue from 'vue';

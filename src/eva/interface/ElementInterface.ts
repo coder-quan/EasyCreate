@@ -6,4 +6,5 @@ export interface ElementInterface {
   class: string;
   arr?: ElementInterface[];
   text?: string;
+  style: Attrs;
 }

@@ -13,6 +13,7 @@
       @check="checkClassName"
       @cancel="cancel"
     ></add-tag-tip>
+    <setting-dialog :css-style="cssStyle"></setting-dialog>
   </div>
 </template>
 
@@ -21,18 +22,20 @@
   import MainView from './components/MainView.vue';
   import PreviewPage from '../PreviewPage/PreviewPage.vue';
   import AddTagTip from './components/AddTagTip.vue';
+  import SettingDialog from './components/SettingDialog.vue';
   import { basisComponents, template } from '@/eva/data/components';
-  import { ElementInterface } from '@/eva/interface/ElementInterface';
+  import { Attrs, ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
 
   @Component({
     name: 'MainPage',
-    components: { MainView, PreviewPage, AddTagTip },
+    components: { MainView, PreviewPage, AddTagTip, SettingDialog },
   })
   export default class MainPage extends Vue {
     private isShowView: boolean = false;
     private component: string = '';
     private isClose: boolean = false;
+    private cssStyle: Attrs = {};
 
     // 回到主页时判断是否已创建页面，已创建则恢复，否则空白
     // public activated() {}
