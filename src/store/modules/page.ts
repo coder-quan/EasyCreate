@@ -34,6 +34,12 @@ class Page extends VuexModule {
   private Set_PageData(element: ElementInterface) {
     this.pageData[0].arr?.push(element);
   }
+
+  @Mutation
+  private Reset_PageData() {
+    this.pageData[0].arr?.splice(0);
+  }
+
   @Mutation
   private Set_DragStartElement(classArray: string[]) {
     this.dragStartElement = classArray;
@@ -52,6 +58,11 @@ class Page extends VuexModule {
   @Action
   public changePageData(element: ElementInterface) {
     this.Set_PageData(element);
+  }
+
+  @Action
+  public resetPageData() {
+    this.Reset_PageData();
   }
 
   @Action

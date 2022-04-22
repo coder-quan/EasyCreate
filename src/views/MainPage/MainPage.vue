@@ -42,8 +42,10 @@
     }
 
     private checkIcon(type: string) {
-      if (type === 'empty') this.showView(false);
-      else if (type === 'preview') this.$router.push('./preview');
+      if (type === 'empty') {
+        this.showView(false);
+        pageModule.resetPageData();
+      } else if (type === 'preview') this.$router.push('./preview');
     }
 
     private clickMenu(title: string) {

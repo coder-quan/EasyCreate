@@ -48,6 +48,9 @@
               pageModule.changeDragStartElement('');
               pageModule.changeDragElement('');
             },
+            click(e: MouseEvent) {
+              e.stopPropagation();
+            },
           },
           attrs: {
             draggable: true,
