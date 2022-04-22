@@ -12,7 +12,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '@/store';
 import { CutClassName } from '../../utils/Regular';
-import { ElementInterface } from '@/eva/interface/elementInterface';
+import { ElementInterface } from '@/eva/interface/ElementInterface';
 
 @Module({ dynamic: true, store, name: 'page' })
 class Page extends VuexModule {
