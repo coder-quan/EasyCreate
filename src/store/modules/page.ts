@@ -16,14 +16,49 @@ import { ElementInterface } from '@/eva/interface/ElementInterface';
 
 @Module({ dynamic: true, store, name: 'page' })
 class Page extends VuexModule {
-  public pageData: ElementInterface[] = [
-    {
-      html: 'div',
-      class: 'first-div',
-      arr: [],
-      style: {},
-    },
-  ];
+  public pageData: ElementInterface = {
+    html: 'div',
+    class: 'first-div',
+    arr: [
+      {
+        html: 'div',
+        class: 'sec-div',
+        arr: [
+          {
+            html: 'button',
+            class: 's-button',
+            text: 'hello',
+            style: {},
+          },
+          {
+            html: 'input',
+            class: 's-input',
+            style: {},
+          },
+        ],
+        style: {},
+      },
+      {
+        html: 'div',
+        class: 'third-div',
+        arr: [
+          {
+            html: 'button',
+            class: 'f-button',
+            text: 'hello',
+            style: {},
+          },
+          {
+            html: 'input',
+            class: 'f-input',
+            style: {},
+          },
+        ],
+        style: {},
+      },
+    ],
+    style: {},
+  };
   // 拖拽元素的类名
   public dragStartElement: string[] = [];
   // 目标元素的类名
@@ -33,12 +68,12 @@ class Page extends VuexModule {
 
   @Mutation
   private Set_PageData(element: ElementInterface) {
-    this.pageData[0].arr?.push(element);
+    this.pageData.arr?.push(element);
   }
 
   @Mutation
   private Reset_PageData() {
-    this.pageData[0].arr?.splice(0);
+    this.pageData.arr?.splice(0);
   }
 
   @Mutation

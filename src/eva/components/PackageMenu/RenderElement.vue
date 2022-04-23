@@ -35,13 +35,19 @@
               pageModule.changeDragStartElement(e.target.className);
             },
             dragover(e: any) {
+              let position: 'left' | 'middle' | 'right' = 'middle';
               e.stopPropagation();
               pageModule.changeDragElement(e.target.className);
-              addElement(
-                pageModule.pageData,
-                pageModule.dragStartElement,
-                pageModule.dragElement
-              );
+              if (e.offsetX > (e.target.scrollWidth * 2) / 3)
+                position = 'right';
+              else if (e.offsetX < e.target.scrollWidth / 3) position = 'left';
+              if (pageModule.pageData.arr)
+                addElement(
+                  pageModule.pageData.arr,
+                  pageModule.dragStartElement,
+                  pageModule.dragElement,
+                  position
+                );
             },
             dragend(e: any) {
               e.stopPropagation();

@@ -8,27 +8,38 @@ import Vue from 'vue';
 export async function addElement(
   targetArray: ElementInterface[],
   startElement: string[],
-  targetElement: string[]
+  targetElement: string[],
+  position: 'left' | 'middle' | 'right'
 ) {
-  let element: ElementInterface;
   let startItem: ElementInterface[];
   let startIndex: number;
+  let isChildElement: boolean = false;
   await catchItem(targetArray, startElement, (item, index) => {
-    element = item[index];
     startItem = item;
     startIndex = index;
   });
-  await catchItem(targetArray, targetElement, (item, index) => {
-    if (
-      hasNotSubtag.indexOf(item[index].html) === -1 &&
-      !isChild(targetArray, startElement, targetElement)
-    ) {
-      pageModule.changeLastAdd(targetElement);
-      // 若元素原来没有子节点，则动态添加
-      if (!item[index].arr) Vue.set(item[index], 'arr', [element]);
-      else item[index].arr?.push(element);
-      startItem.splice(startIndex, 1);
-    }
+  await catchItem(targetArray, targetElement, async function fn(item, index) {
+    await catchItem(startItem, targetElement, () => {
+      isChildElement = true;
+    });
+    if (!isChild(targetArray, startElement, targetElement))
+      if (isChildElement) {
+        console.log(isChildElement);
+        if (position === 'left')
+          if (index > startIndex)
+            item.splice(index, 0, startItem.splice(startIndex + 1, 1)[0]);
+          else item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+        else if (position === 'right')
+          if (index > startIndex)
+            item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+          else item.splice(index + 1, 0, startItem.splice(startIndex, 1)[0]);
+      } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
+        // 若元素原来没有子节点，则动态添加
+        if (!item[index].arr)
+          Vue.set(item[index], 'arr', startItem.splice(startIndex, 1));
+        else item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+        pageModule.changeLastAdd(targetElement);
+      }
     return item[index];
   });
 }
@@ -42,7 +53,8 @@ export function catchItem(
   fn: (targetArray: ElementInterface[], index: number) => void
 ) {
   targetArray.forEach((item, index) => {
-    if (className.indexOf(item.class) !== -1) fn(targetArray, index);
+    if (className && className.indexOf(item.class) !== -1)
+      fn(targetArray, index);
     else if (item.arr) catchItem(item.arr, className, fn);
   });
 }
