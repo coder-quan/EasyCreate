@@ -29,7 +29,7 @@
     private readonly isPreview!: boolean;
 
     private created() {
-      if (pageModule.pageData.arr) this.arr = pageModule.pageData.arr;
+      this.arr = [pageModule.pageData];
     }
     private goBack() {
       this.$router.push('/main');

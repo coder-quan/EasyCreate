@@ -14,7 +14,13 @@
     </div>
     <div class="main"></div>
     <div class="footer">
-      <el-button type="primary" @click="deleteElement">删除元素</el-button>
+      <el-popconfirm
+        :hide-icon="true"
+        title="是否删除"
+        @confirm="deleteElement"
+      >
+        <el-button slot="reference" type="primary">删除元素</el-button>
+      </el-popconfirm>
     </div>
   </div>
 </template>
@@ -42,12 +48,12 @@
 
     private mounted() {
       Bus.$on('show-dialog', (className: string, flag: boolean) => {
+        this.className = '';
         if (flag && this.$route.name === 'main') {
           let classArray: string[] = CutClassName(className);
-          if (pageModule.pageData.arr)
-            catchItem(pageModule.pageData.arr, classArray, (item, index) => {
-              this.className = item[index].class;
-            });
+          catchItem([pageModule.pageData], classArray, (item, index) => {
+            this.className = item[index].class;
+          });
         }
         this.showSetting = this.$route.name === 'main' ? flag : false;
       });
@@ -81,11 +87,14 @@
     }
 
     private deleteElement() {
-      if (pageModule.pageData.arr)
-        catchItem(pageModule.pageData.arr, [this.className], (item, index) => {
-          item.splice(index, 1);
-          this.showSetting = false;
-        });
+      catchItem([pageModule.pageData], [this.className], (item, index) => {
+        if (item[index].class === pageModule.pageData.class)
+          this.$alert('此节点为根节点，不可删除', '', {
+            confirmButtonText: '确定',
+          });
+        item.splice(index, 1);
+        this.showSetting = false;
+      });
     }
   }
 </script>

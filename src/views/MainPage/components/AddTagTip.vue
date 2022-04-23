@@ -42,22 +42,20 @@
      * @description:确认是否输入类名且类名是否已经存在
      */
     private checkEffective() {
-      if (pageModule.pageData.arr) {
-        let isExist: boolean = false;
-        this.className = this.className.trim();
-        catchItem(pageModule.pageData.arr, ['ea-' + this.className], () => {
-          isExist = true;
+      let isExist: boolean = false;
+      this.className = this.className.trim();
+      catchItem([pageModule.pageData], ['ea-' + this.className], () => {
+        isExist = true;
+      });
+      if (this.className && !isExist) this.checkClassName();
+      else if (isExist)
+        this.$alert('类名已存在，请重新输入', '', {
+          confirmButtonText: '确定',
         });
-        if (this.className && !isExist) this.checkClassName();
-        else if (isExist)
-          this.$alert('类名已存在，请重新输入', '', {
-            confirmButtonText: '确定',
-          });
-        else
-          this.$alert('请输入类名', '', {
-            confirmButtonText: '确定',
-          });
-      }
+      else
+        this.$alert('请输入类名', '', {
+          confirmButtonText: '确定',
+        });
     }
 
     @Emit('check')

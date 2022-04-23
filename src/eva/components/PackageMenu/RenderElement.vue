@@ -42,13 +42,12 @@
               if (e.offsetX > (e.target.scrollWidth * 2) / 3)
                 position = 'right';
               else if (e.offsetX < e.target.scrollWidth / 3) position = 'left';
-              if (pageModule.pageData.arr)
-                addElement(
-                  pageModule.pageData.arr,
-                  pageModule.dragStartElement,
-                  pageModule.dragElement,
-                  position
-                );
+              addElement(
+                [pageModule.pageData],
+                pageModule.dragStartElement,
+                pageModule.dragElement,
+                position
+              );
             },
             dragend(e: any) {
               e.stopPropagation();
