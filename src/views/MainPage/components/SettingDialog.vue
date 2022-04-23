@@ -116,12 +116,15 @@
       display: none;
     }
     .header {
+      border-radius: 20px 20px 0 0;
       position: fixed;
       width: 300px;
       padding-left: 44px;
       line-height: 44px;
       text-align: center;
       font-size: 24px;
+      background-color: #fff;
+      border-bottom: 1px solid #bfbfbf;
       .el-icon-close {
         float: right;
         padding: 10px;
@@ -129,6 +132,13 @@
     }
     .main {
       padding: 44px 20px;
+      height: 500px;
+      overflow: hidden scroll;
+      scrollbar-width: none; //火狐隐藏滚动条
+      &::-webkit-scrollbar {
+        //谷歌隐藏滚动条
+        display: none;
+      }
     }
     .footer {
       width: 300px;
@@ -138,6 +148,7 @@
       bottom: 0px;
       text-align: center;
       border-top: 1px solid #bfbfbf;
+      background-color: #fff;
     }
   }
 </style>
