@@ -26,6 +26,7 @@
   import { basisComponents, template } from '@/eva/data/components';
   import { Attrs, ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
+  import Bus from '@/utils/bus';
 
   @Component({
     name: 'MainPage',
@@ -48,7 +49,10 @@
       if (type === 'empty') {
         this.showView(false);
         pageModule.resetPageData();
-      } else if (type === 'preview') this.$router.push('./preview');
+      } else if (type === 'preview') {
+        this.$router.push('./preview');
+        Bus.$emit('show-dialog', '', false);
+      }
     }
 
     private clickMenu(title: string) {

@@ -41,13 +41,15 @@
     private clientY: number = 0;
 
     private mounted() {
-      Bus.$on('show-dialog', (className: string) => {
-        let classArray: string[] = CutClassName(className);
-        this.showSetting = true;
-        if (pageModule.pageData.arr)
-          catchItem(pageModule.pageData.arr, classArray, (item, index) => {
-            this.className = item[index].class;
-          });
+      Bus.$on('show-dialog', (className: string, flag: boolean) => {
+        if (flag && this.$route.name === 'main') {
+          let classArray: string[] = CutClassName(className);
+          if (pageModule.pageData.arr)
+            catchItem(pageModule.pageData.arr, classArray, (item, index) => {
+              this.className = item[index].class;
+            });
+        }
+        this.showSetting = this.$route.name === 'main' ? flag : false;
       });
     }
 

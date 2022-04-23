@@ -57,7 +57,7 @@
             },
             click(e: any) {
               e.stopPropagation();
-              Bus.$emit('show-dialog', e.target.className);
+              Bus.$emit('show-dialog', e.target.className, true);
             },
           },
           attrs: {
