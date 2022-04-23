@@ -13,7 +13,7 @@
       @check="checkClassName"
       @cancel="cancel"
     ></add-tag-tip>
-    <setting-dialog :css-style="cssStyle"></setting-dialog>
+    <setting-dialog></setting-dialog>
   </div>
 </template>
 

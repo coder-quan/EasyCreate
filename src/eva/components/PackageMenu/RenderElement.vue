@@ -1,9 +1,10 @@
 <script lang="ts">
   import { CreateElement } from 'vue';
-  import { Vue, Component, Prop } from 'vue-property-decorator';
+  import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
   import { pageModule } from '@/store/modules/page';
   import { addElement } from '@/utils/dragElement';
   import { ElementInterface } from '@/eva/interface/ElementInterface';
+  import Bus from '@/utils/bus';
 
   @Component({
     name: 'RenderElement',
@@ -54,8 +55,9 @@
               pageModule.changeDragStartElement('');
               pageModule.changeDragElement('');
             },
-            click(e: MouseEvent) {
+            click(e: any) {
               e.stopPropagation();
+              Bus.$emit('show-dialog', e.target.className);
             },
           },
           attrs: {
