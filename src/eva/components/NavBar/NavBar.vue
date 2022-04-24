@@ -13,7 +13,7 @@
       </div>
       <div class="center">EasyCreate</div>
       <div class="right">
-        <el-button size="mini">
+        <el-button size="mini" @click="download">
           导出页面
           <i class="el-icon-download"></i>
         </el-button>
@@ -52,6 +52,11 @@
 
     @Emit('on-add')
     private addPage() {
+      return true;
+    }
+
+    @Emit('download')
+    private download() {
       return true;
     }
   }

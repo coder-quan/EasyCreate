@@ -29,8 +29,16 @@ Vue.directive('demo', {
       );
     });
   },
-  update() {
-    // console.log(1111111);
+  update(el, binding, vnode) {
+    let style: string[] = Object.getOwnPropertyNames(binding.value.value);
+    style.pop();
+    style.forEach((item) => {
+      el.style[item as any] = toCssStyle(
+        item,
+        binding.value.value[item],
+        binding.value.unit[item]
+      );
+    });
   },
   componentUpdated(el, binding, vnode) {
     // console.log(el, el.style);

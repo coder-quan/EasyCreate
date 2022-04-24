@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <nav-bar @on-add="showView">
+    <nav-bar @on-add="showView" @download="download">
       <template v-slot:default="slotProps">
         <package-menu :color="slotProps" @click-menu="clickMenu"></package-menu>
         <main-view v-if="isShowView" @on-check="checkIcon">
@@ -76,6 +76,10 @@
 
     private cancel() {
       this.isClose = false;
+    }
+
+    private download() {
+      console.log(pageModule.pageData);
     }
   }
 </script>

@@ -5,7 +5,8 @@
     class="setting"
     :style="{ '--top': top, '--left': left }"
     draggable="true"
-    @drag="drag"
+    @dragstart="dragstart"
+    @dragover="dragover"
     @dragend="dragend"
   >
     <div class="header">
@@ -28,7 +29,7 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Emit, Prop } from 'vue-property-decorator';
+  import { Vue, Component } from 'vue-property-decorator';
   import Bus from '@/utils/bus';
   import { CutClassName } from '@/utils/Regular';
   import { catchItem } from '@/utils/dragElement';
@@ -64,7 +65,11 @@
       });
     }
 
-    private drag(e: DragEvent) {
+    private dragstart(e: DragEvent) {
+      return false;
+    }
+
+    private dragover(e: any) {
       e.stopPropagation();
       let top: number = (this.$refs.Setting as any).offsetTop;
       let left: number = (this.$refs.Setting as any).offsetLeft;

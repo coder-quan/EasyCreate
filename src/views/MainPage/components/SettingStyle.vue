@@ -8,14 +8,8 @@
         :class="{ 'is-color': !showSpan(item) }"
         size="small"
         v-model="editStyle[item]"
-        @change="changeStyle('value', $event, 'item')"
       ></el-input>
-      <el-select
-        class="unit"
-        v-if="showUnit(item)"
-        v-model="unit[item]"
-        @change="changeStyle('unit', $event, 'item')"
-      >
+      <el-select class="unit" v-if="showUnit(item)" v-model="unit[item]">
         <el-option
           v-for="(value, index) in attrs[item].value"
           :label="value"
@@ -27,7 +21,6 @@
         :class="{ 'is-color': !showSpan(item) }"
         v-if="!isInput(item)"
         v-model="editStyle[item]"
-        @change="changeStyle('value', $event, 'item')"
       >
         <el-option
           v-for="(value, index) in attrs[item].value"
