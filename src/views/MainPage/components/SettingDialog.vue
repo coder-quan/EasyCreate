@@ -13,7 +13,10 @@
       <i class="el-icon-close" @click="close"></i>
     </div>
     <div class="main">
-      <setting-style :css-style="cssStyle"></setting-style>
+      <setting-style
+        :element="element"
+        @change-text="changeText"
+      ></setting-style>
     </div>
     <div class="footer">
       <el-popconfirm
@@ -41,7 +44,11 @@
     components: { SettingStyle },
   })
   export default class SettingDialog extends Vue {
-    private cssStyle: Style = { value: {}, unit: {} }; // 可以进行设置的样式
+    private element: ElementInterface = {
+      html: '',
+      class: '',
+      style: { unit: {}, value: {} },
+    }; // 可以进行设置的样式
     private className: string = '';
     private showSetting: boolean = false;
     private top: string = '100px';
@@ -56,7 +63,7 @@
           let classArray: string[] = CutClassName(className);
           catchItem([pageModule.pageData], classArray, (item, index) => {
             this.className = item[index].class;
-            this.cssStyle = item[index].style;
+            this.element = item[index];
           });
         }
         this.showSetting = this.$route.name === 'main' ? flag : false;
@@ -94,6 +101,11 @@
         item.splice(index, 1);
         this.showSetting = false;
       });
+    }
+
+    private changeText(text: string) {
+      this.$set(this.element, 'text', text);
+      console.log(pageModule.pageData);
     }
   }
 </script>

@@ -1,5 +1,13 @@
 <template>
   <div class="setting-style">
+    <div class="text">
+      Text:
+      <el-input
+        size="small"
+        v-model="elementText"
+        @change="changeText"
+      ></el-input>
+    </div>
     <div class="setting-item" v-for="(item, index) in attribute" :key="index">
       {{ item + ':' }}
       <span v-if="showSpan(item)">#</span>
@@ -36,7 +44,7 @@
 <script lang="ts">
   import { Vue, Component, Emit, Prop, Watch } from 'vue-property-decorator';
   import { Attribute, Attrs } from '@/eva/data/Attrs';
-  import { Style } from '@/eva/interface/ElementInterface';
+  import { Style, ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
 
   @Component({
@@ -44,17 +52,19 @@
   })
   export default class SettingStyle extends Vue {
     @Prop(Object)
-    private cssStyle!: Style;
+    private element!: ElementInterface;
+    private elementText: string = '';
     private editStyle: object = {};
     private attribute: string[] = [];
     private attrs: Attribute = Attrs;
     private unit: object = {};
-    @Watch('cssStyle', { immediate: true, deep: true })
-    private setStyle(newVal: Style, oldVal: Style) {
-      this.editStyle = newVal.value;
-      this.attribute = Object.getOwnPropertyNames(newVal.value);
+    @Watch('element', { immediate: true, deep: true })
+    private setStyle(newVal: ElementInterface, oldVal: ElementInterface) {
+      this.elementText = newVal.text ? newVal.text : '';
+      this.editStyle = newVal.style.value;
+      this.attribute = Object.getOwnPropertyNames(newVal.style.value);
       this.attribute.pop();
-      this.unit = newVal.unit;
+      this.unit = newVal.style.unit;
     }
     private showSpan(attribute: string) {
       return Attrs[attribute].type === 'colorInput';
@@ -69,32 +79,48 @@
         Attrs[attribute].type === 'colorInput'
       );
     }
+
+    @Emit('change-text')
+    private changeText(text: string) {
+      return;
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-  .setting-style .setting-item {
-    margin: 5px 0;
-    width: 358px;
-    height: 36px;
-    .el-input.el-input--small {
-      width: 150px;
-      margin-left: 5px;
-      &.is-color {
+  .setting-style {
+    ::v-deep .text {
+      margin: 5px 0;
+      width: 358px;
+      height: 36px;
+      .el-input.el-input--small {
+        width: 150px;
         margin-left: 15px;
       }
     }
-    ::v-deep .el-select.is-color {
-      margin-left: 15px;
-      .el-input__inner {
-        height: 32px;
+    .setting-item {
+      margin: 5px 0;
+      width: 358px;
+      height: 36px;
+      .el-input.el-input--small {
+        width: 150px;
+        margin-left: 5px;
+        &.is-color {
+          margin-left: 15px;
+        }
       }
-    }
-    .unit ::v-deep .el-input__inner {
-      padding: 0;
-      width: 40px;
-      height: 32px;
-      margin-left: 5px;
+      ::v-deep .el-select.is-color {
+        margin-left: 15px;
+        .el-input__inner {
+          height: 32px;
+        }
+      }
+      .unit ::v-deep .el-input__inner {
+        padding: 0;
+        width: 40px;
+        height: 32px;
+        margin-left: 5px;
+      }
     }
   }
 </style>
