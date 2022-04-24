@@ -1,6 +1,5 @@
 import { ElementInterface } from '@/eva/interface/ElementInterface';
-import { pageModule } from '@/store/modules/page';
-import { hasNotSubtag } from '@/eva/data/components';
+import { hasNotSubtag } from '@/eva/data/Components';
 import Vue from 'vue';
 /**
  * @description: 将拖动的元素添加到目标元素中
@@ -24,7 +23,7 @@ export async function addElement(
     });
     if (!isChild(targetArray, startElement, targetElement))
       if (isChildElement) {
-        console.log(isChildElement);
+        console.log('sameElement');
         if (position === 'left')
           if (index > startIndex)
             item.splice(index, 0, startItem.splice(startIndex + 1, 1)[0]);
@@ -34,11 +33,17 @@ export async function addElement(
             item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
           else item.splice(index + 1, 0, startItem.splice(startIndex, 1)[0]);
       } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
+        console.log('');
         // 若元素原来没有子节点，则动态添加
         if (!item[index].arr)
           Vue.set(item[index], 'arr', startItem.splice(startIndex, 1));
         else item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
-        pageModule.changeLastAdd(targetElement);
+      } else {
+        console.log('differentElement');
+        if (position === 'left')
+          item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+        else if (position === 'right')
+          item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
       }
     return item[index];
   });

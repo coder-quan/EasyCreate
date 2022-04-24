@@ -1,8 +1,3 @@
-/*
- * @Description: 组件的数据，包括html部分和css部分
- * @Autor: dongquan.zhang
- * @LastEditors: dongquan.zhang
- */
 import { ElementInterface } from '../interface/ElementInterface';
 export const hasNotSubtag: string[] = ['input', 'button', 'a'];
 
@@ -13,7 +8,12 @@ export const basisComponents: Map<string, string> = new Map([
   ['单选框', 'radio'],
   ['多选框', 'checkbox'],
   ['链接', 'a'],
-  ['标题', 'h'],
+  ['h1', 'h1'],
+  ['h2', 'h2'],
+  ['h3', 'h3'],
+  ['h4', 'h4'],
+  ['h5', 'h5'],
+  ['h6', 'h6'],
   ['段落', 'p'],
   ['粗体', 'strong'],
   ['斜体', 'i'],
@@ -23,7 +23,7 @@ export const basisComponents: Map<string, string> = new Map([
   ['下标', 'sub'],
   ['表格', 'table'],
   ['导航栏', 'nav'],
-  ['走马灯', 'merry-go-round'],
+  ['走马灯', 'merryGoRound'],
   ['下拉表', 'select'],
   ['div', 'div'],
   ['span', 'span'],

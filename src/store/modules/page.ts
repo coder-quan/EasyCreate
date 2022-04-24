@@ -28,15 +28,24 @@ class Page extends VuexModule {
             html: 'button',
             class: 's-button',
             text: 'hello',
-            style: {},
+            style: {
+              value: {},
+              unit: {},
+            },
           },
           {
             html: 'input',
             class: 's-input',
-            style: {},
+            style: {
+              value: {},
+              unit: {},
+            },
           },
         ],
-        style: {},
+        style: {
+          value: {},
+          unit: {},
+        },
       },
       {
         html: 'div',
@@ -46,25 +55,76 @@ class Page extends VuexModule {
             html: 'button',
             class: 'f-button',
             text: 'hello',
-            style: {},
+            style: {
+              value: {},
+              unit: {},
+            },
           },
           {
             html: 'input',
             class: 'f-input',
-            style: {},
+            style: {
+              value: {},
+              unit: {},
+            },
           },
         ],
-        style: {},
+        style: {
+          value: {},
+          unit: {},
+        },
       },
     ],
-    style: {},
+    style: {
+      value: {
+        width: '100',
+        height: '100',
+        color: 'bfbfbf',
+        backgroundColor: 'fff',
+        display: 'block',
+        textAlign: 'center',
+        fontSize: '16',
+        fontStyle: 'normal',
+        fontWeight: '',
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+        lineHeight: '',
+        paddingTop: '',
+        paddingRight: '',
+        paddingBottom: '',
+        paddingLeft: '',
+        marginTop: '',
+        marginRight: '',
+        marginBottom: '',
+        marginLeft: '',
+      },
+      unit: {
+        width: 'vw',
+        height: 'vh',
+        fontSize: 'px',
+        fontWeight: 'px',
+        top: 'px',
+        right: 'px',
+        bottom: 'px',
+        left: 'px',
+        lineHeight: 'px',
+        paddingTop: 'px',
+        paddingRight: 'px',
+        paddingBottom: 'px',
+        paddingLeft: 'px',
+        marginTop: 'px',
+        marginRight: 'px',
+        marginBottom: 'px',
+        marginLeft: 'px',
+      },
+    },
   };
   // 拖拽元素的类名
   public dragStartElement: string[] = [];
   // 目标元素的类名
   public dragElement: string[] = [];
-  // 上一次拖拽成功的类名
-  public lastAdd: string[] = [];
 
   @Mutation
   private Set_PageData(element: ElementInterface) {
@@ -86,11 +146,6 @@ class Page extends VuexModule {
     this.dragElement = classArray;
   }
 
-  @Mutation
-  private Set_LastAdd(classArray: string[]) {
-    this.lastAdd = classArray;
-  }
-
   @Action
   public changePageData(element: ElementInterface) {
     this.Set_PageData(element);
@@ -109,11 +164,6 @@ class Page extends VuexModule {
   @Action
   public changeDragElement(className: string) {
     this.Set_DragElement(CutClassName(className));
-  }
-
-  @Action
-  public changeLastAdd(className: string[]) {
-    this.Set_LastAdd(className);
   }
 }
 

@@ -23,8 +23,8 @@
   import PreviewPage from '../PreviewPage/PreviewPage.vue';
   import AddTagTip from './components/AddTagTip.vue';
   import SettingDialog from './components/SettingDialog.vue';
-  import { basisComponents, template } from '@/eva/data/components';
-  import { Attrs, ElementInterface } from '@/eva/interface/ElementInterface';
+  import { basisComponents, template } from '@/eva/data/Components';
+  import { ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
   import Bus from '@/utils/bus';
 
@@ -36,7 +36,7 @@
     private isShowView: boolean = false;
     private component: string = '';
     private isClose: boolean = false;
-    private cssStyle: Attrs = {};
+    private cssStyle: object = {};
 
     // 回到主页时判断是否已创建页面，已创建则恢复，否则空白
     // public activated() {}

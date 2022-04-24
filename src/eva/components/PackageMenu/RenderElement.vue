@@ -63,6 +63,12 @@
             draggable: true,
             readonly: true,
           },
+          directives: [
+            {
+              name: 'demo',
+              value: this.element.style,
+            },
+          ],
         },
         arr // 子节点数组
       );

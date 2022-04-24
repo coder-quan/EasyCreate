@@ -31,16 +31,17 @@ export const Menu: MenuType[] = [
     submenu: [
       {
         title: '文本元素',
-        value: [
-          '标题',
-          '段落',
-          '粗体',
-          '斜体',
-          '删除线文字',
-          '水平线',
-          '上标',
-          '下标',
-        ],
+        value: ['段落', '粗体', '斜体', '删除线文字', '水平线', '上标', '下标'],
+      },
+    ],
+  },
+  {
+    icon: 'el-icon-notebook-2',
+    title: '标题',
+    submenu: [
+      {
+        title: '标题',
+        value: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       },
     ],
   },
