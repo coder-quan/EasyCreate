@@ -65,17 +65,6 @@ export function catchItem(
 }
 
 /**
- * @description: 判断两个字符串数组是否相等
- */
-function isEqual(firstArray: string[], secondArray: string[]): boolean {
-  let equal: boolean = true;
-  firstArray.forEach((item) => {
-    if (secondArray.indexOf(item) === -1) equal = false;
-  });
-  return equal;
-}
-
-/**
  * @description: 判断目标元素是否为拖拽元素或拖拽元素的子元素
  */
 function isChild(

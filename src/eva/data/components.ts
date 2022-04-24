@@ -33,5 +33,5 @@ export const template: ElementInterface = {
   html: '',
   class: '',
   text: 'hello world',
-  style: {},
+  style: { unit: {}, value: {} },
 };

@@ -42,7 +42,10 @@
               if (e.offsetX > (e.target.scrollWidth * 2) / 3)
                 position = 'right';
               else if (e.offsetX < e.target.scrollWidth / 3) position = 'left';
-              if (pageModule.dragStartElement.length)
+              if (
+                pageModule.dragStartElement &&
+                pageModule.dragStartElement.length
+              )
                 addElement(
                   [pageModule.pageData],
                   pageModule.dragStartElement,

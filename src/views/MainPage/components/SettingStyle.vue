@@ -75,6 +75,8 @@
 <style lang="scss" scoped>
   .setting-style .setting-item {
     margin: 5px 0;
+    width: 358px;
+    height: 36px;
     .el-input.el-input--small {
       width: 150px;
       margin-left: 5px;
