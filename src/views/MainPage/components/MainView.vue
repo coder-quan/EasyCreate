@@ -1,6 +1,9 @@
 <template>
   <div class="main-view">
     <div class="edit">
+      <el-tooltip class="item" effect="light" :content="content">
+        <i :class="className" @click="clickIcon('outline')"></i>
+      </el-tooltip>
       <el-tooltip class="item" effect="light" content="预览">
         <i class="el-icon-full-screen" @click="clickIcon('preview')"></i>
       </el-tooltip>
@@ -19,15 +22,31 @@
 
 <script lang="ts">
   import { Vue, Component, Emit } from 'vue-property-decorator';
+  import { pageModule } from '@/store/modules/page';
 
-  type iconType = 'preview' | 'cancel' | 'empty';
+  type iconType = 'outline' | 'preview' | 'cancel' | 'empty';
   @Component({
     name: 'MainView',
   })
   export default class MainView extends Vue {
+    private isShowOutline: boolean = false;
+
+    get className() {
+      return this.isShowOutline
+        ? 'el-icon-remove-outline'
+        : 'el-icon-circle-plus-outline';
+    }
+
+    get content() {
+      return this.isShowOutline ? '去除边框' : '添加边框';
+    }
     // 根据点击的图标触发相应的事件
     @Emit('on-check')
     private clickIcon(type: iconType) {
+      if (type === 'outline') {
+        this.isShowOutline = !this.isShowOutline;
+        pageModule.changeOutline(this.isShowOutline);
+      }
       return type;
     }
   }
@@ -66,5 +85,9 @@
         display: none;
       }
     }
+  }
+  ::v-deep .outline {
+    outline-style: dotted;
+    outline-color: #dfdfdf;
   }
 </style>

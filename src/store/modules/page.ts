@@ -131,6 +131,8 @@ class Page extends VuexModule {
   public dragStartElement: string[] = [];
   // 目标元素的类名
   public dragElement: string[] = [];
+  // 是否显示边框
+  public showOutline: boolean = false;
 
   @Mutation
   private Set_PageData(element: ElementInterface) {
@@ -152,6 +154,11 @@ class Page extends VuexModule {
     this.dragElement = classArray;
   }
 
+  @Mutation
+  private Set_Outline(flag: boolean) {
+    this.showOutline = flag;
+  }
+
   @Action
   public changePageData(element: ElementInterface) {
     this.Set_PageData(element);
@@ -170,6 +177,11 @@ class Page extends VuexModule {
   @Action
   public changeDragElement(className: string) {
     this.Set_DragElement(CutClassName(className));
+  }
+
+  @Action
+  public changeOutline(flag: boolean) {
+    this.Set_Outline(flag);
   }
 }
 

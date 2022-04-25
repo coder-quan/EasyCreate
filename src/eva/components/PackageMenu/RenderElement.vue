@@ -51,6 +51,7 @@
         {
           class: {
             [this.element.class]: true,
+            outline: pageModule.showOutline,
           },
           on: {
             dragstart(e: any) {
