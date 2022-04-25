@@ -1,13 +1,7 @@
+// import { Style } from '@/eva/interface/ElementInterface';
 interface Style {
   type: 'input' | 'colorInput' | 'choose';
   value: string[];
-  flex?: {
-    flexDirection: string[];
-    flexWrap: string[];
-    justifyContent: string[];
-    alignItems: string[];
-    alignContent: string[];
-  };
 }
 export interface Attribute {
   [name: string]: Style;
@@ -15,35 +9,50 @@ export interface Attribute {
 export const Attrs: Attribute = {
   boxSizing: {
     type: 'choose',
-    value: ['content-box', 'border-box', 'inherit'],
+    value: ['', 'content-box', 'border-box', 'inherit'],
   },
   display: {
     type: 'choose',
-    value: ['none', 'block', 'inline', 'inline-block', 'flex'],
-    flex: {
-      flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
-      flexWrap: ['nowarp', 'warp', 'warp-reverse'],
-      justifyContent: [
-        'flex-start',
-        'flex-end',
-        'center',
-        'space-between',
-        'space-around',
-      ],
-      alignItems: ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'],
-      alignContent: [
-        'flex-start',
-        'flex-end',
-        'center',
-        'space-between',
-        'space-around',
-        'stretch',
-      ],
-    },
+    value: ['none', 'block', 'inline', 'inline-block', 'flex', 'table'],
+  },
+  flexDirection: {
+    type: 'choose',
+    value: ['', 'row', 'row-reverse', 'column', 'column-reverse'],
+  },
+  flexWrap: {
+    type: 'choose',
+    value: ['', 'nowarp', 'warp', 'warp-reverse'],
+  },
+  justifyContent: {
+    type: 'choose',
+    value: [
+      '',
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+    ],
+  },
+  alignItems: {
+    type: 'choose',
+    value: [
+      '',
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+      'stretch',
+    ],
+  },
+  alignContent: {
+    type: 'choose',
+    value: ['', 'row', 'row-reverse', 'column', 'column-reverse'],
   },
   position: {
     type: 'choose',
-    value: ['static', 'relative', 'absolute', 'fixed', 'sticky'],
+    value: ['', 'static', 'relative', 'absolute', 'fixed', 'sticky'],
   },
   height: {
     type: 'input',
@@ -55,7 +64,7 @@ export const Attrs: Attribute = {
   },
   textAlign: {
     type: 'choose',
-    value: ['left', 'center', 'right', 'justify', 'inherit'],
+    value: ['', 'left', 'center', 'right', 'justify', 'inherit'],
   },
   backgroundColor: {
     type: 'colorInput',
@@ -105,27 +114,35 @@ export const Attrs: Attribute = {
   },
   order: {
     type: 'input',
-    value: [''],
+    value: [],
   },
   flexGrow: {
     type: 'input',
-    value: [''],
+    value: [],
   },
   flexShrink: {
     type: 'input',
-    value: [''],
+    value: [],
   },
   flexBasis: {
     type: 'input',
-    value: [''],
+    value: [],
   },
   alignSelf: {
     type: 'choose',
-    value: ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch'],
+    value: [
+      '',
+      'auto',
+      'flex-start',
+      'flex-end',
+      'center',
+      'baseline',
+      'stretch',
+    ],
   },
   float: {
     type: 'choose',
-    value: ['left', 'right', 'none', 'inherit'],
+    value: ['', 'left', 'right', 'none', 'inherit'],
   },
   fontSize: {
     type: 'input',
@@ -133,11 +150,11 @@ export const Attrs: Attribute = {
   },
   fontStyle: {
     type: 'choose',
-    value: ['normal', 'italic', 'oblique', 'inherit'],
+    value: ['', 'normal', 'italic', 'oblique', 'inherit'],
   },
   fontWeight: {
     type: 'choose',
-    value: ['normal', 'bold', 'bolder', 'lighter', 'inherit'],
+    value: ['', 'normal', 'bold', 'bolder', 'lighter', 'inherit'],
   },
   lineHeight: {
     type: 'input',
@@ -181,15 +198,15 @@ export const Attrs: Attribute = {
   },
   opcity: {
     type: 'input',
-    value: [''],
+    value: [],
   },
   overFllowX: {
     type: 'choose',
-    value: ['visible', 'hidden', 'scroll', 'auto', 'inherit'],
+    value: ['', 'visible', 'hidden', 'scroll', 'auto', 'inherit'],
   },
   overFllowY: {
     type: 'choose',
-    value: ['visible', 'hidden', 'scroll', 'auto', 'inherit'],
+    value: ['', 'visible', 'hidden', 'scroll', 'auto', 'inherit'],
   },
   paddingTop: {
     type: 'input',
@@ -209,11 +226,12 @@ export const Attrs: Attribute = {
   },
   scrollBehavior: {
     type: 'choose',
-    value: ['auto', 'smooth', 'initial', 'inherit'],
+    value: ['', 'auto', 'smooth', 'initial', 'inherit'],
   },
   textDecoration: {
     type: 'choose',
     value: [
+      '',
       'none',
       'underline',
       'overline',
@@ -229,6 +247,7 @@ export const Attrs: Attribute = {
   textDecorationLine: {
     type: 'choose',
     value: [
+      '',
       'none',
       'underline',
       'overline',
@@ -240,6 +259,7 @@ export const Attrs: Attribute = {
   textDecorationStyle: {
     type: 'choose',
     value: [
+      '',
       'solid',
       'double',
       'dotted',
@@ -256,6 +276,7 @@ export const Attrs: Attribute = {
   textJustify: {
     type: 'choose',
     value: [
+      '',
       'auto',
       'none',
       'inter-word',
@@ -267,23 +288,23 @@ export const Attrs: Attribute = {
   },
   textOverflow: {
     type: 'choose',
-    value: ['clip', 'ellipsis'],
+    value: ['', 'clip', 'ellipsis'],
   },
   textTransform: {
     type: 'choose',
-    value: ['none', 'capitalize', 'uppercase', 'lowercase', 'inherit'],
+    value: ['', 'none', 'capitalize', 'uppercase', 'lowercase', 'inherit'],
   },
   visibility: {
     type: 'choose',
-    value: ['visible', 'hidden', 'collapse', 'inherit'],
+    value: ['', 'visible', 'hidden', 'collapse', 'inherit'],
   },
   whiteSpace: {
     type: 'choose',
-    value: ['normal', 'pre', 'nowrap', 'pre-wrap', 'pre-line', 'inherit'],
+    value: ['', 'normal', 'pre', 'nowrap', 'pre-wrap', 'pre-line', 'inherit'],
   },
   wordBreak: {
     type: 'choose',
-    value: ['normal', 'break-all', 'keep-all'],
+    value: ['', 'normal', 'break-all', 'keep-all'],
   },
   wordSpacing: {
     type: 'input',
@@ -291,16 +312,23 @@ export const Attrs: Attribute = {
   },
   wordWrap: {
     type: 'choose',
-    value: ['normal', 'break-word'],
+    value: ['', 'normal', 'break-word'],
   },
   zIndex: {
     type: 'input',
-    value: [''],
+    value: [],
   },
 };
 
 const common: object = {
-  fontSize: '16',
+  boxSizing: 'border-box',
+  order: '',
+  flexDirection: '',
+  flexWrap: '',
+  justifyContent: '',
+  alignItems: '',
+  alignContent: '',
+  fontSize: '',
   fontStyle: 'normal',
   fontWeight: '',
   backgroundColor: 'fff',
@@ -319,69 +347,197 @@ const common: object = {
   marginBottom: '',
   marginLeft: '',
 };
-const button: object = {
-  width: '50',
-  height: '20',
-  borderWidth: '2',
-  borderStyle: 'solid',
-  borderColor: 'bfbfbf',
-  display: 'inline-block',
-  textAlign: 'center',
-  ...common,
+
+const commonUnits: object = {
+  width: 'px',
+  height: 'px',
+  fontSize: 'px',
+  fontWeight: 'px',
+  top: 'px',
+  right: 'px',
+  bottom: 'px',
+  left: 'px',
+  lineHeight: 'px',
+  paddingTop: 'px',
+  paddingRight: 'px',
+  paddingBottom: 'px',
+  paddingLeft: 'px',
+  marginTop: 'px',
+  marginRight: 'px',
+  marginBottom: 'px',
+  marginLeft: 'px',
 };
-const input: object = {
-  width: '200',
-  height: '20',
-  borderWidth: '2',
-  borderStyle: 'solid',
-  borderColor: 'bfbfbf',
-  display: 'inline-block',
-  textAlign: 'start',
-  textIndent: '',
-  wordSpacing: '',
-  ...common,
-};
-const password: object = input;
-const radio: object = Object.assign(input, {
-  borderWidth: 0,
-  borderStyle: 'none',
-});
-const checkbox: object = radio;
-const a: object = {
-  width: '',
-  height: '',
-  display: 'inline',
-  ...common,
-};
-const table: object = {
-  display: 'table',
-  ...common,
-};
-const nav: object = {
-  display: 'inline-block',
-  ...common,
-};
-const merryGoRound: object = {
-  display: 'block',
-  width: '',
-  height: '100',
-  ...common,
-};
-const select: object = {
-  display: 'inline-block',
-  width: '',
-  height: '',
-  ...common,
-};
-const div: object = {
-  display: 'block',
-  width: '',
-  height: '100',
-  ...common,
-};
-const span: object = {
-  display: 'inline',
-  width: '100',
-  height: '',
-  ...common,
+
+interface Component {
+  [name: string]: {
+    value: object;
+    unit: object;
+  };
+}
+export const components: Component = {
+  button: {
+    value: {
+      width: '50',
+      height: '20',
+      borderWidth: '2',
+      borderStyle: 'solid',
+      borderColor: 'bfbfbf',
+      display: 'inline-block',
+      textAlign: 'center',
+      ...common,
+    },
+    unit: { borderWidth: 'px', ...commonUnits },
+  },
+  input: {
+    value: {
+      width: '200',
+      height: '20',
+      borderWidth: '2',
+      borderStyle: 'solid',
+      borderColor: 'bfbfbf',
+      display: 'inline-block',
+      textAlign: 'start',
+      textIndent: '',
+      wordSpacing: '',
+      ...common,
+    },
+    unit: {
+      borderWidth: 'px',
+      textIndent: 'px',
+      wordSpacing: 'px',
+      ...commonUnits,
+    },
+  },
+  eaPassword: {
+    value: {
+      width: '200',
+      height: '20',
+      borderWidth: '2',
+      borderStyle: 'solid',
+      borderColor: 'bfbfbf',
+      display: 'inline-block',
+      textAlign: 'start',
+      textIndent: '',
+      wordSpacing: '',
+      ...common,
+    },
+    unit: {
+      borderWidth: 'px',
+      textIndent: 'px',
+      wordSpacing: 'px',
+      ...commonUnits,
+    },
+  },
+  eaRadio: {
+    value: {
+      width: '200',
+      height: '20',
+      borderWidth: '0',
+      borderStyle: 'none',
+      borderColor: 'bfbfbf',
+      display: 'inline-block',
+      textAlign: 'start',
+      textIndent: '',
+      wordSpacing: '',
+      ...common,
+    },
+    unit: {
+      borderWidth: 'px',
+      textIndent: 'px',
+      wordSpacing: 'px',
+      ...commonUnits,
+    },
+  },
+  eaCheckbox: {
+    value: {
+      width: '200',
+      height: '20',
+      borderWidth: '0',
+      borderStyle: 'none',
+      borderColor: 'bfbfbf',
+      display: 'inline-block',
+      textAlign: 'start',
+      textIndent: '',
+      wordSpacing: '',
+      ...common,
+    },
+    unit: {
+      borderWidth: 'px',
+      textIndent: 'px',
+      wordSpacing: 'px',
+      ...commonUnits,
+    },
+  },
+  a: {
+    value: {
+      width: '',
+      height: '',
+      display: 'inline',
+      ...common,
+    },
+    unit: { ...commonUnits },
+  },
+  p: { value: { ...common }, unit: { ...commonUnits } },
+  h1: { value: { ...common }, unit: { ...commonUnits } },
+  h2: { value: { ...common }, unit: { ...commonUnits } },
+  h3: { value: { ...common }, unit: { ...commonUnits } },
+  h4: { value: { ...common }, unit: { ...commonUnits } },
+  h5: { value: { ...common }, unit: { ...commonUnits } },
+  h6: { value: { ...common }, unit: { ...commonUnits } },
+  strong: { value: { ...common }, unit: { ...commonUnits } },
+  i: { value: { ...common }, unit: { ...commonUnits } },
+  s: { value: { ...common }, unit: { ...commonUnits } },
+  hr: { value: { ...common }, unit: { ...commonUnits } },
+  sup: { value: { ...common }, unit: { ...commonUnits } },
+  sub: { value: { ...common }, unit: { ...commonUnits } },
+  eaTable: {
+    value: {
+      display: 'table',
+      ...common,
+    },
+    unit: { ...common },
+  },
+  eaNav: {
+    value: {
+      display: 'inline-block',
+      ...common,
+    },
+    unit: { ...commonUnits },
+  },
+  eaMerryGoRound: {
+    value: {
+      display: 'block',
+      width: '',
+      height: '100',
+      ...common,
+    },
+    unit: { ...commonUnits },
+  },
+  eaSelect: {
+    value: {
+      display: 'inline-block',
+      width: '',
+      height: '',
+      ...common,
+    },
+    unit: { ...commonUnits },
+  },
+  div: {
+    value: {
+      display: 'block',
+      width: '',
+      height: '100',
+      ...common,
+    },
+    unit: { ...commonUnits },
+  },
+  span: {
+    value: {
+      display: 'inline',
+      width: '100',
+      height: '',
+      ...common,
+    },
+    unit: { ...commonUnits },
+  },
 };

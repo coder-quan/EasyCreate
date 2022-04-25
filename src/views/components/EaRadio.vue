@@ -1,12 +1,24 @@
-<template></template>
+<template>
+  <div class="radio">
+    <input :class="classname" type="radio" name="easycreate" />
+    <slot></slot>
+  </div>
+</template>
 
 <script lang="ts">
-  import { Vue, Component, Emit } from 'vue-property-decorator';
+  import { Vue, Component, Emit, Prop } from 'vue-property-decorator';
 
   @Component({
     name: 'EaRadio',
   })
-  export default class EaRadio extends Vue {}
+  export default class EaRadio extends Vue {
+    @Prop(String)
+    private classname!: string;
+  }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+  .radio {
+    display: inline-block;
+  }
+</style>

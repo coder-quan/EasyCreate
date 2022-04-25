@@ -26,6 +26,8 @@
   import { basisComponents, template } from '@/eva/data/Components';
   import { ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
+  import { components } from '@/eva/data/Attrs';
+  import { toLittleCamelCase } from '@/utils/string';
   import Bus from '@/utils/bus';
 
   @Component({
@@ -71,6 +73,14 @@
       if (html) element.html = html;
       else element.html = 'div';
       element.class = className;
+      element.style.value = Object.assign(
+        {},
+        components[toLittleCamelCase(html) as keyof typeof components].value
+      );
+      element.style.unit = Object.assign(
+        {},
+        components[toLittleCamelCase(html) as keyof typeof components].unit
+      );
       pageModule.changePageData(element);
     }
 

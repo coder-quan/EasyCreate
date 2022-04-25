@@ -1,12 +1,25 @@
 import { ElementInterface } from '../interface/ElementInterface';
-export const hasNotSubtag: string[] = ['input', 'button', 'a'];
+export const hasNotSubtag: string[] = [
+  'input',
+  'button',
+  'a',
+  'ea-password',
+  'ea-checkbox',
+  'ea-radio',
+];
+
+// 特殊元素，文本只能通过value属性传值
+export const hasNoText: string[] = ['input', 'ea-password'];
+
+// 特殊元素，需要在组件的子元素添加类名
+export const specialElement: string[] = ['ea-checkbox', 'ea-radio'];
 
 export const basisComponents: Map<string, string> = new Map([
   ['按钮', 'button'],
   ['输入框', 'input'],
-  ['密码框', 'password'],
-  ['单选框', 'radio'],
-  ['多选框', 'checkbox'],
+  ['密码框', 'ea-password'],
+  ['单选框', 'ea-radio'],
+  ['多选框', 'ea-checkbox'],
   ['链接', 'a'],
   ['h1', 'h1'],
   ['h2', 'h2'],
@@ -21,10 +34,10 @@ export const basisComponents: Map<string, string> = new Map([
   ['水平线', 'hr'],
   ['上标', 'sup'],
   ['下标', 'sub'],
-  ['表格', 'table'],
-  ['导航栏', 'nav'],
-  ['走马灯', 'merryGoRound'],
-  ['下拉表', 'select'],
+  ['表格', 'ea-table'],
+  ['导航栏', 'ea-nav'],
+  ['走马灯', 'ea-merry-go-round'],
+  ['下拉表', 'ea-select'],
   ['div', 'div'],
   ['span', 'span'],
 ]);

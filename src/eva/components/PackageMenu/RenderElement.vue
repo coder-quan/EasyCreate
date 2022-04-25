@@ -2,18 +2,39 @@
   import { CreateElement } from 'vue';
   import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
   import { pageModule } from '@/store/modules/page';
+  import { hasNoText, specialElement } from '@/eva/data/Components';
   import { addElement } from '@/utils/dragElement';
+  import { isExist } from '@/utils/array';
   import { ElementInterface } from '@/eva/interface/ElementInterface';
   import Bus from '@/utils/bus';
+  import EaPassword from '@/views/components/EaPassword.vue';
+  import EaCheckbox from '@/views/components/EaCheckbox.vue';
+  import EaRadio from '@/views/components/EaRadio.vue';
+  // import EaPassword from '@/views/components/EaPassword.vue';
+  // import EaPassword from '@/views/components/EaPassword.vue';
 
   @Component({
     name: 'RenderElement',
+    components: { EaPassword, EaCheckbox, EaRadio },
   })
   export default class RenderElement extends Vue {
     @Prop({ type: Object, required: true })
     private readonly element!: ElementInterface;
     private render(createElement: CreateElement) {
       let arr: any = []; // 子节点数组
+      let attrs: {
+        draggable: boolean;
+        readonly: boolean;
+        value?: string;
+        classname?: string;
+      } = {
+        draggable: true,
+        readonly: true,
+      };
+      if (isExist(hasNoText, this.element.html))
+        attrs.value = this.element.text;
+      if (isExist(specialElement, this.element.html))
+        attrs.classname = this.element.class;
       if (this.element.arr?.length)
         for (let item of this.element.arr)
           arr.push(
@@ -23,7 +44,8 @@
               },
             })
           );
-      if (this.element.text) arr.splice(0, 0, this.element.text);
+      if (this.element.text && !isExist(hasNoText, this.element.html))
+        arr.splice(0, 0, this.element.text);
       return createElement(
         this.element.html, // 标签名称
         {
@@ -64,8 +86,7 @@
             },
           },
           attrs: {
-            draggable: true,
-            readonly: true,
+            ...attrs,
           },
           directives: [
             {

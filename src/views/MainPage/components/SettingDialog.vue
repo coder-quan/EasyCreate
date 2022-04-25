@@ -105,7 +105,6 @@
 
     private changeText(text: string) {
       this.$set(this.element, 'text', text);
-      console.log(pageModule.pageData);
     }
   }
 </script>

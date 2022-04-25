@@ -1,16 +1,20 @@
 <template>
-  <a>
+  <div class="checkbox">
+    <input :class="classname" type="checkbox" name="easycreate" />
     <slot></slot>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Emit } from 'vue-property-decorator';
+  import { Vue, Component, Prop } from 'vue-property-decorator';
 
   @Component({
     name: 'EaCheckbox',
   })
-  export default class EaCheckbox extends Vue {}
+  export default class EaCheckbox extends Vue {
+    @Prop(String)
+    private classname!: string;
+  }
 </script>
 
 <style></style>
