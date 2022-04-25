@@ -1,6 +1,6 @@
 <template>
   <div class="setting-style">
-    <div class="text">
+    <div v-if="!showText" class="text">
       Text:
       <el-input
         size="small"
@@ -46,6 +46,8 @@
   import { Attribute, Attrs } from '@/eva/data/Attrs';
   import { Style, ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
+  import { packageElement } from '@/eva/data/Components';
+  import { isExist } from '@/utils/array';
 
   @Component({
     name: 'SettingStyle',
@@ -65,6 +67,10 @@
       this.attribute = Object.getOwnPropertyNames(newVal.style.value);
       this.attribute.pop();
       this.unit = newVal.style.unit;
+    }
+
+    get showText() {
+      return isExist(packageElement, this.element.html);
     }
     private showSpan(attribute: string) {
       return Attrs[attribute].type === 'colorInput';

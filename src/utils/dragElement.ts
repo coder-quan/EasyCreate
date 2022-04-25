@@ -13,6 +13,7 @@ export async function addElement(
   let startItem: ElementInterface[];
   let startIndex: number;
   let isChildElement: boolean = false;
+  console.log(startElement, targetElement);
   await catchItem(targetArray, startElement, (item, index) => {
     startItem = item;
     startIndex = index;
@@ -23,7 +24,7 @@ export async function addElement(
     });
     if (!isChild(targetArray, startElement, targetElement))
       if (isChildElement) {
-        console.log('sameElement');
+        console.log('sameElement', targetElement);
         if (position === 'left')
           if (index > startIndex)
             item.splice(index, 0, startItem.splice(startIndex + 1, 1)[0]);
@@ -39,7 +40,7 @@ export async function addElement(
           Vue.set(item[index], 'arr', startItem.splice(startIndex, 1));
         else item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
       } else {
-        console.log('differentElement');
+        console.log('differentElement', targetElement);
         if (position === 'left')
           item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
         else if (position === 'right')

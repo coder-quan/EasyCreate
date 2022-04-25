@@ -6,13 +6,28 @@ export const hasNotSubtag: string[] = [
   'ea-password',
   'ea-checkbox',
   'ea-radio',
+  'ea-table',
+  'ea-nav',
+  'ea-merry-go-round',
+  'ea-select',
 ];
 
 // 特殊元素，文本只能通过value属性传值
 export const hasNoText: string[] = ['input', 'ea-password'];
 
 // 特殊元素，需要在组件的子元素添加类名
-export const specialElement: string[] = ['ea-checkbox', 'ea-radio'];
+export const specialElement: string[] = [
+  'ea-checkbox',
+  'ea-radio',
+  'ea-merry-go-round',
+];
+// 封装的组件,表格、导航栏、走马灯、下拉表
+export const packageElement: string[] = [
+  'ea-table',
+  'ea-nav',
+  'ea-merry-go-round',
+  'ea-select',
+];
 
 export const basisComponents: Map<string, string> = new Map([
   ['按钮', 'button'],

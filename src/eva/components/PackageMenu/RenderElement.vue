@@ -4,18 +4,19 @@
   import { pageModule } from '@/store/modules/page';
   import { hasNoText, specialElement } from '@/eva/data/Components';
   import { addElement } from '@/utils/dragElement';
-  import { isExist } from '@/utils/array';
-  import { ElementInterface } from '@/eva/interface/ElementInterface';
+  import { isExist, isEqual } from '@/utils/array';
+  import { CutClassName } from '@/utils/Regular';
+  import { ElementInterface, Style } from '@/eva/interface/ElementInterface';
   import Bus from '@/utils/bus';
   import EaPassword from '@/views/components/EaPassword.vue';
   import EaCheckbox from '@/views/components/EaCheckbox.vue';
   import EaRadio from '@/views/components/EaRadio.vue';
-  // import EaPassword from '@/views/components/EaPassword.vue';
+  import EaMerryGoRound from '@/views/components/EaMerryGoRound.vue';
   // import EaPassword from '@/views/components/EaPassword.vue';
 
   @Component({
     name: 'RenderElement',
-    components: { EaPassword, EaCheckbox, EaRadio },
+    components: { EaPassword, EaCheckbox, EaRadio, EaMerryGoRound },
   })
   export default class RenderElement extends Vue {
     @Prop({ type: Object, required: true })
@@ -28,8 +29,8 @@
         value?: string;
         classname?: string;
       } = {
-        draggable: true,
-        readonly: true,
+        draggable: this.$route.name === 'main',
+        readonly: this.$route.name === 'main',
       };
       if (isExist(hasNoText, this.element.html))
         attrs.value = this.element.text;
@@ -60,21 +61,30 @@
             },
             dragover(e: any) {
               let position: 'left' | 'middle' | 'right' = 'middle';
-              e.stopPropagation();
-              pageModule.changeDragElement(e.target.className);
               if (e.offsetX > (e.target.scrollWidth * 2) / 3)
                 position = 'right';
               else if (e.offsetX < e.target.scrollWidth / 3) position = 'left';
+              e.stopPropagation();
               if (
-                pageModule.dragStartElement &&
-                pageModule.dragStartElement.length
-              )
-                addElement(
-                  [pageModule.pageData],
-                  pageModule.dragStartElement,
+                !isEqual(
                   pageModule.dragElement,
-                  position
-                );
+                  CutClassName(e.target.className)
+                ) ||
+                position !== pageModule.position
+              ) {
+                pageModule.changeDragElement(e.target.className);
+                pageModule.changePosition(position);
+                if (
+                  pageModule.dragStartElement &&
+                  pageModule.dragStartElement.length
+                )
+                  addElement(
+                    [pageModule.pageData],
+                    pageModule.dragStartElement,
+                    pageModule.dragElement,
+                    pageModule.position
+                  );
+              }
             },
             dragend(e: any) {
               e.stopPropagation();

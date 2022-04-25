@@ -506,12 +506,25 @@ export const components: Component = {
   },
   eaMerryGoRound: {
     value: {
-      display: 'block',
-      width: '',
-      height: '100',
-      ...common,
+      top: '',
+      right: '',
+      bottom: '',
+      left: '',
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
     },
-    unit: { ...commonUnits },
+    unit: {
+      top: 'px',
+      right: 'px',
+      bottom: 'px',
+      left: 'px',
+      marginTop: 'px',
+      marginRight: 'px',
+      marginBottom: 'px',
+      marginLeft: 'px',
+    },
   },
   eaSelect: {
     value: {

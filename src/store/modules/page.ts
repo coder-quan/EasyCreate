@@ -133,6 +133,8 @@ class Page extends VuexModule {
   public dragElement: string[] = [];
   // 是否显示边框
   public showOutline: boolean = false;
+  // 拖动元素到目标元素的位置
+  public position: 'left' | 'middle' | 'right' = 'middle';
 
   @Mutation
   private Set_PageData(element: ElementInterface) {
@@ -159,6 +161,11 @@ class Page extends VuexModule {
     this.showOutline = flag;
   }
 
+  @Mutation
+  private Set_Position(position: 'left' | 'middle' | 'right') {
+    this.position = position;
+  }
+
   @Action
   public changePageData(element: ElementInterface) {
     this.Set_PageData(element);
@@ -182,6 +189,11 @@ class Page extends VuexModule {
   @Action
   public changeOutline(flag: boolean) {
     this.Set_Outline(flag);
+  }
+
+  @Action
+  public changePosition(position: 'left' | 'middle' | 'right') {
+    this.Set_Position(position);
   }
 }
 
