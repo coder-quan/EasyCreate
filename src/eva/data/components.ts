@@ -20,6 +20,8 @@ export const specialElement: string[] = [
   'ea-checkbox',
   'ea-radio',
   'ea-merry-go-round',
+  'ea-table',
+  'ea-nav',
 ];
 // 封装的组件,表格、导航栏、走马灯、下拉表
 export const packageElement: string[] = [

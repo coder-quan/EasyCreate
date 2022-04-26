@@ -51,7 +51,7 @@ export const Menu: MenuType[] = [
     submenu: [
       {
         title: '组件',
-        value: ['表格', '导航栏', '走马灯', '下拉表'],
+        value: ['表格', '导航栏', '走马灯'],
       },
     ],
   },

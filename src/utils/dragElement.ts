@@ -1,6 +1,5 @@
 import { ElementInterface } from '@/eva/interface/ElementInterface';
 import { hasNotSubtag } from '@/eva/data/Components';
-import Vue from 'vue';
 /**
  * @description: 将拖动的元素添加到目标元素中
  */

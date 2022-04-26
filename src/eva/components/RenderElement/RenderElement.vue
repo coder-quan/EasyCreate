@@ -12,11 +12,19 @@
   import EaCheckbox from '@/views/components/EaCheckbox.vue';
   import EaRadio from '@/views/components/EaRadio.vue';
   import EaMerryGoRound from '@/views/components/EaMerryGoRound.vue';
-  // import EaPassword from '@/views/components/EaPassword.vue';
+  import EaTable from '@/views/components/EaTable.vue';
+  import EaNav from '@/views/components/EaNav.vue';
 
   @Component({
     name: 'RenderElement',
-    components: { EaPassword, EaCheckbox, EaRadio, EaMerryGoRound },
+    components: {
+      EaPassword,
+      EaCheckbox,
+      EaRadio,
+      EaMerryGoRound,
+      EaTable,
+      EaNav,
+    },
   })
   export default class RenderElement extends Vue {
     @Prop({ type: Object, required: true })
@@ -28,6 +36,7 @@
         readonly: boolean;
         value?: string;
         classname?: string;
+        cssstyle?: Style;
       } = {
         draggable: this.$route.name === 'main',
         readonly: this.$route.name === 'main',

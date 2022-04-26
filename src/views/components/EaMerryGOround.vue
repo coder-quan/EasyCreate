@@ -57,7 +57,6 @@
   .slide {
     display: inline-block;
     position: relative;
-    margin: auto;
     width: 600px;
     height: 200px;
     text-align: center;

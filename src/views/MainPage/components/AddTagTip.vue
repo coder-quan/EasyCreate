@@ -5,7 +5,11 @@
     :visible.sync="dialogVisible"
   >
     <span>此处类名不可与已有类名重复</span>
-    <el-input v-model="className"></el-input>
+    <el-input
+      ref="input"
+      v-model="className"
+      @keyup.enter.native="checkEffective"
+    ></el-input>
     <span slot="footer" class="dialog-footer">
       <el-button @click="dialogVisible = false">取 消</el-button>
       <el-button type="primary" @click="checkEffective">确 定</el-button>
@@ -33,8 +37,12 @@
 
     @Watch('isClose')
     private changeClose(newVal: boolean, oldVal: boolean) {
-      if (newVal) this.dialogVisible = true;
-      else this.dialogVisible = false;
+      if (newVal) {
+        this.dialogVisible = true;
+        this.$nextTick(() => {
+          (this.$refs.input as any).focus();
+        });
+      } else this.dialogVisible = false;
       this.className = '';
     }
 
