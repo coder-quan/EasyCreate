@@ -94,10 +94,11 @@
 
     private deleteElement() {
       catchItem([pageModule.pageData], [this.className], (item, index) => {
-        if (item[index].class === pageModule.pageData.class)
+        if (item[index].class === pageModule.pageData.class) {
           this.$alert('此节点为根节点，不可删除', '', {
             confirmButtonText: '确定',
           });
+        }
         item.splice(index, 1);
         this.showSetting = false;
       });

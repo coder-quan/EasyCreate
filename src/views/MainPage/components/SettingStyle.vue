@@ -76,8 +76,9 @@
       return Attrs[attribute].type === 'colorInput';
     }
     private showUnit(attribute: string) {
-      if (Attrs[attribute].type === 'input' && Attrs[attribute].value.length)
+      if (Attrs[attribute].type === 'input' && Attrs[attribute].value.length) {
         return true;
+      }
     }
     private isInput(attribute: string) {
       return (

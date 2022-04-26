@@ -41,12 +41,14 @@
         draggable: this.$route.name === 'main',
         readonly: this.$route.name === 'main',
       };
-      if (isExist(hasNoText, this.element.html))
+      if (isExist(hasNoText, this.element.html)) {
         attrs.value = this.element.text;
-      if (isExist(specialElement, this.element.html))
+      }
+      if (isExist(specialElement, this.element.html)) {
         attrs.classname = this.element.class;
-      if (this.element.arr?.length)
-        for (let item of this.element.arr)
+      }
+      if (this.element.arr?.length) {
+        for (let item of this.element.arr) {
           arr.push(
             createElement('render-element', {
               attrs: {
@@ -54,8 +56,11 @@
               },
             })
           );
-      if (this.element.text && !isExist(hasNoText, this.element.html))
+        }
+      }
+      if (this.element.text && !isExist(hasNoText, this.element.html)) {
         arr.splice(0, 0, this.element.text);
+      }
       return createElement(
         this.element.html, // 标签名称
         {
@@ -70,9 +75,11 @@
             },
             dragover(e: any) {
               let position: 'left' | 'middle' | 'right' | '' = '';
-              if (e.offsetX > (e.target.scrollWidth * 2) / 3)
+              if (e.offsetX > (e.target.scrollWidth * 2) / 3) {
                 position = 'right';
-              else if (e.offsetX < e.target.scrollWidth / 3) position = 'left';
+              } else if (e.offsetX < e.target.scrollWidth / 3) {
+                position = 'left';
+              }
               e.stopPropagation();
               if (
                 !isEqual(
@@ -86,13 +93,14 @@
                 if (
                   pageModule.dragStartElement &&
                   pageModule.dragStartElement.length
-                )
+                ) {
                   addElement(
                     [pageModule.pageData],
                     pageModule.dragStartElement,
                     pageModule.dragElement,
                     pageModule.position
                   );
+                }
               }
             },
             dragend(e: any) {

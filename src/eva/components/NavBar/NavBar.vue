@@ -42,7 +42,9 @@
     // 监听选择主题颜色，将选择的颜色保存到本地并计算出字体颜色
     @Watch('backgroundColor', { immediate: true })
     private changeColor(newVal: string, oldVal: string) {
-      if (oldVal) themeModule.ResetTheme(newVal);
+      if (oldVal) {
+        themeModule.ResetTheme(newVal);
+      }
       themeModule.GetTheme();
       this.theme = themeModule.theme;
       themeModule.ResetColor(this.theme);

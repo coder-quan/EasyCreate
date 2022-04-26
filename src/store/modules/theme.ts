@@ -28,8 +28,11 @@ class Theme extends VuexModule implements ThemeState {
   @Action
   public async GetTheme() {
     let color: string | null = localStorage.getItem('theme');
-    if (color) await this.Set_Theme(color);
-    else await this.ResetTheme();
+    if (color) {
+      await this.Set_Theme(color);
+    } else {
+      await this.ResetTheme();
+    }
   }
 
   @Action
@@ -44,7 +47,9 @@ class Theme extends VuexModule implements ThemeState {
     let color: string = '';
     if (themeColor.length === 4) {
       let result: string = '#';
-      for (let letter of themeColor) result += letter + letter;
+      for (let letter of themeColor) {
+        result += letter + letter;
+      }
       themeColor = result;
     }
     color =

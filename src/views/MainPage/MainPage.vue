@@ -29,6 +29,7 @@
   import { components } from '@/eva/data/Attrs';
   import { toLittleCamelCase } from '@/utils/string';
   import Bus from '@/utils/bus';
+  import { download } from '@/utils/download';
 
   @Component({
     name: 'MainPage',
@@ -96,7 +97,7 @@
     }
 
     private download() {
-      console.log(pageModule.pageData);
+      download();
     }
   }
 </script>

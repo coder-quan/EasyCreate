@@ -1,8 +1,14 @@
-import { Display } from '../type/CssType';
-interface TagVlaue {
-  [attrname: string]: string;
+import { Style } from './ElementInterface';
+
+export interface ComponentStyle {
+  className: string[];
+  style: string[];
+}
+export interface Component {
+  code: (tag: string, className: string, value?: string) => string;
+  css: (cssStyle: Style, component?: ComponentStyle[]) => string;
 }
 
-interface CssRules {
-  display: Display;
+export interface TemplateComponents {
+  [name: string]: Component;
 }

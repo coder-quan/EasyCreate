@@ -32,7 +32,9 @@
 
     @Watch('dialogVisible')
     private changeVisible(newVal: boolean, oldVal: boolean) {
-      if (!this.dialogVisible) this.cancel();
+      if (!this.dialogVisible) {
+        this.cancel();
+      }
     }
 
     @Watch('isClose')
@@ -42,7 +44,9 @@
         this.$nextTick(() => {
           (this.$refs.input as any).focus();
         });
-      } else this.dialogVisible = false;
+      } else {
+        this.dialogVisible = false;
+      }
       this.className = '';
     }
 
@@ -55,15 +59,17 @@
       catchItem([pageModule.pageData], ['ea-' + this.className], () => {
         isExist = true;
       });
-      if (this.className && !isExist) this.checkClassName();
-      else if (isExist)
+      if (this.className && !isExist) {
+        this.checkClassName();
+      } else if (isExist) {
         this.$alert('类名已存在，请重新输入', '', {
           confirmButtonText: '确定',
         });
-      else
+      } else {
         this.$alert('请输入类名', '', {
           confirmButtonText: '确定',
         });
+      }
     }
 
     @Emit('check')

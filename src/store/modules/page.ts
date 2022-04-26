@@ -72,6 +72,7 @@ class Page extends VuexModule {
         marginLeft: 'px',
       },
     },
+    text: '',
   };
   // 拖拽元素的类名
   public dragStartElement: string[] = [];
