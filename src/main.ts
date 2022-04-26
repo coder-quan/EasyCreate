@@ -19,26 +19,26 @@ Vue.config.productionTip = false;
 register();
 Vue.directive('demo', {
   bind(el, binding, vnode) {
-    let style: string[] = Object.getOwnPropertyNames(binding.value.value);
+    let style: string[] = Object.getOwnPropertyNames(binding.value.style.value);
     style.pop();
     if (style.length)
       style.forEach((item) => {
         el.style[item as any] = toCssStyle(
           item,
-          binding.value.value[item],
-          binding.value.unit[item]
+          binding.value.style.value[item],
+          binding.value.style.unit[item]
         );
       });
   },
   update(el, binding, vnode) {
-    let style: string[] = Object.getOwnPropertyNames(binding.value.value);
+    let style: string[] = Object.getOwnPropertyNames(binding.value.style.value);
     style.pop();
     if (style.length)
       style.forEach((item) => {
         el.style[item as any] = toCssStyle(
           item,
-          binding.value.value[item],
-          binding.value.unit[item]
+          binding.value.style.value[item],
+          binding.value.style.unit[item]
         );
       });
   },

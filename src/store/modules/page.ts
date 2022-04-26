@@ -19,62 +19,7 @@ class Page extends VuexModule {
   public pageData: ElementInterface = {
     html: 'div',
     class: 'first-div',
-    arr: [
-      {
-        html: 'div',
-        class: 'sec-div',
-        arr: [
-          {
-            html: 'button',
-            class: 's-button',
-            text: 'hello',
-            style: {
-              value: {},
-              unit: {},
-            },
-          },
-          {
-            html: 'input',
-            class: 's-input',
-            style: {
-              value: {},
-              unit: {},
-            },
-          },
-        ],
-        style: {
-          value: {},
-          unit: {},
-        },
-      },
-      {
-        html: 'div',
-        class: 'third-div',
-        arr: [
-          {
-            html: 'button',
-            class: 'f-button',
-            text: 'hello',
-            style: {
-              value: {},
-              unit: {},
-            },
-          },
-          {
-            html: 'input',
-            class: 'f-input',
-            style: {
-              value: {},
-              unit: {},
-            },
-          },
-        ],
-        style: {
-          value: {},
-          unit: {},
-        },
-      },
-    ],
+    arr: [],
     style: {
       value: {
         width: '100',
@@ -134,7 +79,7 @@ class Page extends VuexModule {
   // 是否显示边框
   public showOutline: boolean = false;
   // 拖动元素到目标元素的位置
-  public position: 'left' | 'middle' | 'right' = 'middle';
+  public position: 'left' | 'middle' | 'right' | '' = '';
 
   @Mutation
   private Set_PageData(element: ElementInterface) {
@@ -162,7 +107,7 @@ class Page extends VuexModule {
   }
 
   @Mutation
-  private Set_Position(position: 'left' | 'middle' | 'right') {
+  private Set_Position(position: 'left' | 'middle' | 'right' | '') {
     this.position = position;
   }
 
@@ -192,7 +137,7 @@ class Page extends VuexModule {
   }
 
   @Action
-  public changePosition(position: 'left' | 'middle' | 'right') {
+  public changePosition(position: 'left' | 'middle' | 'right' | '') {
     this.Set_Position(position);
   }
 }

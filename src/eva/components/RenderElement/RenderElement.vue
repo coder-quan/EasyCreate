@@ -60,7 +60,7 @@
               pageModule.changeDragStartElement(e.target.className);
             },
             dragover(e: any) {
-              let position: 'left' | 'middle' | 'right' = 'middle';
+              let position: 'left' | 'middle' | 'right' | '' = '';
               if (e.offsetX > (e.target.scrollWidth * 2) / 3)
                 position = 'right';
               else if (e.offsetX < e.target.scrollWidth / 3) position = 'left';
@@ -102,7 +102,7 @@
           directives: [
             {
               name: 'demo',
-              value: this.element.style,
+              value: this.element,
             },
           ],
         },

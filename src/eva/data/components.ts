@@ -62,4 +62,5 @@ export const template: ElementInterface = {
   class: '',
   text: 'hello world',
   style: { unit: {}, value: {} },
+  arr: [],
 };

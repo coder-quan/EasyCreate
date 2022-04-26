@@ -8,7 +8,7 @@ export async function addElement(
   targetArray: ElementInterface[],
   startElement: string[],
   targetElement: string[],
-  position: 'left' | 'middle' | 'right'
+  position: 'left' | 'middle' | 'right' | ''
 ) {
   let startItem: ElementInterface[];
   let startIndex: number;
@@ -33,13 +33,11 @@ export async function addElement(
           if (index > startIndex)
             item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
           else item.splice(index + 1, 0, startItem.splice(startIndex, 1)[0]);
-      } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
-        console.log('');
-        // 若元素原来没有子节点，则动态添加
-        if (!item[index].arr)
-          Vue.set(item[index], 'arr', startItem.splice(startIndex, 1));
-        else item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
-      } else {
+        else if (hasNotSubtag.indexOf(item[index].html) === -1)
+          item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+      } else if (hasNotSubtag.indexOf(item[index].html) === -1)
+        item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+      else {
         console.log('differentElement', targetElement);
         if (position === 'left')
           item.splice(index, 0, startItem.splice(startIndex, 1)[0]);

@@ -67,19 +67,21 @@
     }
 
     private checkClassName(className: string) {
-      let element: ElementInterface = Object.assign({}, template);
+      let element: ElementInterface = JSON.parse(JSON.stringify(template));
       let html: string = basisComponents.get(this.component)!;
       this.isClose = false;
       if (html) element.html = html;
       else element.html = 'div';
       element.class = className;
-      element.style.value = Object.assign(
-        {},
-        components[toLittleCamelCase(html) as keyof typeof components].value
+      element.style.value = JSON.parse(
+        JSON.stringify(
+          components[toLittleCamelCase(html) as keyof typeof components].value
+        )
       );
-      element.style.unit = Object.assign(
-        {},
-        components[toLittleCamelCase(html) as keyof typeof components].unit
+      element.style.unit = JSON.parse(
+        JSON.stringify(
+          components[toLittleCamelCase(html) as keyof typeof components].unit
+        )
       );
       pageModule.changePageData(element);
     }
