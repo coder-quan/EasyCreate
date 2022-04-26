@@ -29,10 +29,6 @@
   export default class EaNav extends Vue {
     @Prop(String)
     private classname!: string;
-    @Prop(Object)
-    private cssstyle!: Style;
-    private background: string = '#1989fa';
-    private color: string = '#333';
     private data: object[] = [
       { text: '首页' },
       {
@@ -45,13 +41,6 @@
       },
       { text: '关于我们' },
     ];
-
-    @Watch('cssstyle', { immediate: true, deep: true })
-    private setCssStyle(newVal: Style, oldVal: Style) {
-      if (newVal.value.background)
-        this.background = '#' + newVal.value.background;
-      if (newVal.value.color) this.color = '#' + newVal.value.color;
-    }
   }
 </script>
 

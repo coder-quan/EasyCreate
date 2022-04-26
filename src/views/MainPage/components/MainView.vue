@@ -7,9 +7,6 @@
       <el-tooltip class="item" effect="light" content="预览">
         <i class="el-icon-full-screen" @click="clickIcon('preview')"></i>
       </el-tooltip>
-      <el-tooltip class="item" effect="light" content="撤销">
-        <i class="el-icon-refresh-left" @click="clickIcon('cancel')"></i>
-      </el-tooltip>
       <el-tooltip class="item" effect="light" content="删除画布">
         <i class="el-icon-delete" @click="clickIcon('empty')"></i>
       </el-tooltip>
