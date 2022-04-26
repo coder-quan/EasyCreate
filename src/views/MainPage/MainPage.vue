@@ -58,11 +58,13 @@
     }
 
     private clickMenu(title: string) {
-      if (this.isShowView) this.isClose = true;
-      else
+      if (this.isShowView) {
+        this.isClose = true;
+      } else {
         this.$alert('请先新建页面或选择模板', '', {
           confirmButtonText: '确定',
         });
+      }
       this.component = title;
     }
 
@@ -70,8 +72,11 @@
       let element: ElementInterface = JSON.parse(JSON.stringify(template));
       let html: string = basisComponents.get(this.component)!;
       this.isClose = false;
-      if (html) element.html = html;
-      else element.html = 'div';
+      if (html) {
+        element.html = html;
+      } else {
+        element.html = 'div';
+      }
       element.class = className;
       element.style.value = JSON.parse(
         JSON.stringify(

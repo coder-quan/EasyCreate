@@ -10,12 +10,16 @@ export function isExist<T>(array: T[], item: T): boolean {
  */
 export function isEqual<T>(firstArray: T[], secondArray: T[]): boolean {
   let result: boolean = true;
-  if (firstArray && firstArray.length)
+  if (firstArray && firstArray.length) {
     firstArray.forEach((item) => {
-      if (secondArray && secondArray.length)
+      if (secondArray && secondArray.length) {
         secondArray.forEach((value) => {
-          if (item !== value) result = false;
+          if (item !== value) {
+            result = false;
+          }
         });
+      }
     });
+  }
   return result;
 }

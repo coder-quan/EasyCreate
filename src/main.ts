@@ -21,7 +21,7 @@ Vue.directive('demo', {
   bind(el, binding, vnode) {
     let style: string[] = Object.getOwnPropertyNames(binding.value.style.value);
     style.pop();
-    if (style.length)
+    if (style.length) {
       style.forEach((item) => {
         el.style[item as any] = toCssStyle(
           item,
@@ -29,11 +29,12 @@ Vue.directive('demo', {
           binding.value.style.unit[item]
         );
       });
+    }
   },
   update(el, binding, vnode) {
     let style: string[] = Object.getOwnPropertyNames(binding.value.style.value);
     style.pop();
-    if (style.length)
+    if (style.length) {
       style.forEach((item) => {
         el.style[item as any] = toCssStyle(
           item,
@@ -41,10 +42,7 @@ Vue.directive('demo', {
           binding.value.style.unit[item]
         );
       });
-  },
-  componentUpdated(el, binding, vnode) {
-    // console.log(el, el.style);
-    // console.log(111, binding, binding.value);
+    }
   },
 });
 new Vue({

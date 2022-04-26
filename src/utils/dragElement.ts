@@ -12,7 +12,6 @@ export async function addElement(
   let startItem: ElementInterface[];
   let startIndex: number;
   let isChildElement: boolean = false;
-  console.log(startElement, targetElement);
   await catchItem(targetArray, startElement, (item, index) => {
     startItem = item;
     startIndex = index;
@@ -21,28 +20,33 @@ export async function addElement(
     await catchItem(startItem, targetElement, () => {
       isChildElement = true;
     });
-    if (!isChild(targetArray, startElement, targetElement))
+    if (!isChild(targetArray, startElement, targetElement)) {
       if (isChildElement) {
-        console.log('sameElement', targetElement);
-        if (position === 'left')
-          if (index > startIndex)
+        if (position === 'left') {
+          if (index > startIndex) {
             item.splice(index, 0, startItem.splice(startIndex + 1, 1)[0]);
-          else item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
-        else if (position === 'right')
-          if (index > startIndex)
+          } else {
             item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
-          else item.splice(index + 1, 0, startItem.splice(startIndex, 1)[0]);
-        else if (hasNotSubtag.indexOf(item[index].html) === -1)
+          }
+        } else if (position === 'right') {
+          if (index > startIndex) {
+            item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+          } else {
+            item.splice(index + 1, 0, startItem.splice(startIndex, 1)[0]);
+          }
+        } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
           item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
-      } else if (hasNotSubtag.indexOf(item[index].html) === -1)
+        }
+      } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
         item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
-      else {
-        console.log('differentElement', targetElement);
-        if (position === 'left')
+      } else {
+        if (position === 'left') {
           item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
-        else if (position === 'right')
+        } else if (position === 'right') {
           item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+        }
       }
+    }
     return item[index];
   });
 }
@@ -56,9 +60,11 @@ export function catchItem(
   fn: (targetArray: ElementInterface[], index: number) => void
 ) {
   targetArray.forEach((item, index) => {
-    if (className && className.indexOf(item.class) !== -1)
+    if (className && className.indexOf(item.class) !== -1) {
       fn(targetArray, index);
-    else if (item.arr) catchItem(item.arr, className, fn);
+    } else if (item.arr) {
+      catchItem(item.arr, className, fn);
+    }
   });
 }
 
@@ -73,12 +79,15 @@ function isChild(
   let flag: boolean = false;
   catchItem(targetArray, startElement, (item, index) => {
     // 目标元素为拖拽元素
-    if (targetElement.includes(item[index].class)) flag = true;
-    if (item[index].arr)
+    if (targetElement.includes(item[index].class)) {
+      flag = true;
+    }
+    if (item[index].arr) {
       catchItem(item[index].arr!, targetElement, (value, position) => {
         //  目标元素为拖拽元素的子元素
         flag = true;
       });
+    }
   });
   return flag;
 }

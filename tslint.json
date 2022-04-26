@@ -74,7 +74,7 @@
     "trailing-comma": false, //句尾不需要加逗号
     "comma-style": [2, "last"],
     "constructor-super": 2,
-    "curly": [true, "as-needed"],
+    "curly": true,
     "dot-location": [2, "property"],
     "eol-last": 2,
     "eqeqeq": [
