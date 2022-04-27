@@ -44,8 +44,7 @@
 <script lang="ts">
   import { Vue, Component, Emit, Prop, Watch } from 'vue-property-decorator';
   import { Attribute, Attrs } from '@/eva/data/Attrs';
-  import { Style, ElementInterface } from '@/eva/interface/ElementInterface';
-  import { pageModule } from '@/store/modules/page';
+  import { ElementInterface } from '@/eva/interface/ElementInterface';
   import { packageElement } from '@/eva/data/Components';
   import { isExist } from '@/utils/array';
 

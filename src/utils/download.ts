@@ -27,7 +27,7 @@ export function getCode(data: ElementInterface[], code?: string): string {
         );
       } else if (camelToHyphene(item.html) === 'ea-password' && item.text) {
         result += Component.prototype.singleTag(
-          item.html,
+          'input',
           item.class,
           item.text,
           'password'
@@ -76,6 +76,10 @@ function getBaseCss(data: ElementInterface[]): ComponentStyle[] {
 
 export function getCss(cssStyle: ComponentStyle[]): string {
   let style: string = '';
+  cssStyle = [
+    { className: '*', style: { padding: '0', margin: '0' } },
+    ...cssStyle,
+  ];
   cssStyle.forEach((item) => {
     let attribute: string = '';
     if (item.style.value) {

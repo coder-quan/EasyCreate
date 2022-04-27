@@ -37,7 +37,8 @@
   import { catchItem } from '@/utils/dragElement';
   import { pageModule } from '@/store/modules/page';
   import SettingStyle from './SettingStyle.vue';
-  import { Style, ElementInterface } from '@/eva/interface/ElementInterface';
+  import { ElementInterface } from '@/eva/interface/ElementInterface';
+  import { hasNotSubtag } from '@/eva/data/Components';
 
   @Component({
     name: 'SettingDialog',
@@ -64,6 +65,9 @@
           catchItem([pageModule.pageData], classArray, (item, index) => {
             this.className = item[index].class;
             this.element = item[index];
+            if (!hasNotSubtag.includes(this.element.html)) {
+              pageModule.changeClickClass(this.className);
+            }
           });
         }
         this.showSetting = this.$route.name === 'main' ? flag : false;

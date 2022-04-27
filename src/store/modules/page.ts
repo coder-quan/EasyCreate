@@ -13,6 +13,8 @@ import {
 import store from '@/store';
 import { CutClassName } from '../../utils/Regular';
 import { ElementInterface } from '@/eva/interface/ElementInterface';
+import { catchItem } from '@/utils/dragElement';
+import Vue from 'vue';
 
 @Module({ dynamic: true, store, name: 'page' })
 class Page extends VuexModule {
@@ -84,14 +86,76 @@ class Page extends VuexModule {
   // 拖动元素到目标元素的位置
   public position: 'left' | 'middle' | 'right' | '' = '';
 
+  public clickClass: string = 'first-div';
+
+  public baseData: ElementInterface = {
+    html: 'div',
+    class: 'first-div',
+    arr: [],
+    style: {
+      value: {
+        boxSizing: 'border-box',
+        width: '100',
+        height: '100',
+        color: 'bfbfbf',
+        backgroundColor: 'fff',
+        display: 'block',
+        position: '',
+        order: '',
+        flexDirection: '',
+        flexWrap: '',
+        justifyContent: '',
+        alignItems: '',
+        alignContent: '',
+        textAlign: 'left',
+        fontSize: '16',
+        fontStyle: 'normal',
+        fontWeight: '',
+        top: '',
+        right: '',
+        bottom: '',
+        left: '',
+        lineHeight: '',
+        paddingTop: '',
+        paddingRight: '',
+        paddingBottom: '',
+        paddingLeft: '',
+        marginTop: '',
+        marginRight: '',
+        marginBottom: '',
+        marginLeft: '',
+      },
+      unit: {
+        width: 'vw',
+        height: 'vh',
+        fontSize: 'px',
+        fontWeight: 'px',
+        top: 'px',
+        right: 'px',
+        bottom: 'px',
+        left: 'px',
+        lineHeight: 'px',
+        paddingTop: 'px',
+        paddingRight: 'px',
+        paddingBottom: 'px',
+        paddingLeft: 'px',
+        marginTop: 'px',
+        marginRight: 'px',
+        marginBottom: 'px',
+        marginLeft: 'px',
+      },
+    },
+    text: '',
+  };
+
   @Mutation
-  private Set_PageData(element: ElementInterface) {
-    this.pageData.arr?.push(element);
+  private Set_PageData(data: ElementInterface) {
+    Vue.set(this, 'pageData', JSON.parse(JSON.stringify(data)));
   }
 
   @Mutation
   private Reset_PageData() {
-    this.pageData.arr?.splice(0);
+    Vue.set(this, 'pageData', JSON.parse(JSON.stringify(this.baseData)));
   }
 
   @Mutation
@@ -114,9 +178,22 @@ class Page extends VuexModule {
     this.position = position;
   }
 
-  @Action
+  @Mutation
+  private Set_ClickClass(className: string) {
+    this.clickClass = className;
+  }
+
+  @Action({ rawError: true })
   public changePageData(element: ElementInterface) {
-    this.Set_PageData(element);
+    catchItem([this.pageData], [this.clickClass], (item, index) => {
+      console.log(item[index]);
+      item[index].arr?.push(element);
+    });
+  }
+
+  @Action
+  public chooseTemplate(data: ElementInterface) {
+    this.Set_PageData(data);
   }
 
   @Action
@@ -142,6 +219,11 @@ class Page extends VuexModule {
   @Action
   public changePosition(position: 'left' | 'middle' | 'right' | '') {
     this.Set_Position(position);
+  }
+
+  @Action
+  public changeClickClass(className: string) {
+    this.Set_ClickClass(className);
   }
 }
 

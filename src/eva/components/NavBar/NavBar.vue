@@ -2,18 +2,18 @@
   <div class="nav-bar-container">
     <div class="nav-bar" :style="{ '--color': theme, '--font-color': color }">
       <div class="left">
-        <el-button size="mini" @click="addPage">
+        <el-button size="mini" @click="check('add')">
           新建
           <i class="el-icon-document"></i>
         </el-button>
-        <el-button size="mini">
+        <el-button size="mini" @click="check('choose')">
           选择模板
           <i class="el-icon-folder-add"></i>
         </el-button>
       </div>
       <div class="center">EasyCreate</div>
       <div class="right">
-        <el-button size="mini" @click="download">
+        <el-button size="mini" @click="check('download')">
           导出页面
           <i class="el-icon-download"></i>
         </el-button>
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Watch, Emit } from 'vue-property-decorator';
+  import { Vue, Component, Watch, Emit, Prop } from 'vue-property-decorator';
   import { themeModule } from '@/store/modules/theme';
 
   @Component({
@@ -38,6 +38,8 @@
     private theme: string = '';
     private backgroundColor: string = '';
     private color: string = '';
+    @Prop(Boolean)
+    private isShowView!: boolean;
 
     // 监听选择主题颜色，将选择的颜色保存到本地并计算出字体颜色
     @Watch('backgroundColor', { immediate: true })
@@ -52,6 +54,16 @@
       this.backgroundColor = themeModule.theme;
     }
 
+    private check(type: 'add' | 'download' | 'choose') {
+      if (type === 'add' && !this.isShowView) {
+        this.addPage();
+      } else if (type === 'download' && this.isShowView) {
+        this.download();
+      } else if (type === 'choose' && !this.isShowView) {
+        this.choose();
+      }
+    }
+
     @Emit('on-add')
     private addPage() {
       return true;
@@ -59,6 +71,11 @@
 
     @Emit('download')
     private download() {
+      return true;
+    }
+
+    @Emit('choose')
+    private choose() {
       return true;
     }
   }

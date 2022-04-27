@@ -1,6 +1,11 @@
 <template>
   <div class="main">
-    <nav-bar @on-add="showView" @download="download">
+    <nav-bar
+      :is-show-view="isShowView"
+      @on-add="showView"
+      @download="download"
+      @choose="choose"
+    >
       <template v-slot:default="slotProps">
         <package-menu :color="slotProps" @click-menu="clickMenu"></package-menu>
         <main-view v-if="isShowView" @on-check="checkIcon">
@@ -19,6 +24,11 @@
       @check="checkDownloadName"
       @cancel="cancel"
     ></download>
+    <choose-template
+      :isClose="isCloseTemplate"
+      @check="checkTemplate"
+      @cancel="cancel"
+    ></choose-template>
   </div>
 </template>
 
@@ -29,6 +39,7 @@
   import AddTagTip from './components/AddTagTip.vue';
   import SettingDialog from './components/SettingDialog.vue';
   import Download from './components/Download.vue';
+  import ChooseTemplate from './components/ChooseTemplate.vue';
   import { basisComponents, template } from '@/eva/data/Components';
   import { ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
@@ -36,16 +47,25 @@
   import { toLittleCamelCase } from '@/utils/string';
   import Bus from '@/utils/bus';
   import { download } from '@/utils/download';
+  import { TemplateMap, pageTemplate } from '@/eva/data/Template';
 
   @Component({
     name: 'MainPage',
-    components: { MainView, PreviewPage, AddTagTip, SettingDialog, Download },
+    components: {
+      MainView,
+      PreviewPage,
+      AddTagTip,
+      SettingDialog,
+      Download,
+      ChooseTemplate,
+    },
   })
   export default class MainPage extends Vue {
     private isShowView: boolean = false;
     private component: string = '';
     private isClose: boolean = false;
     private isCloseDownload: boolean = false;
+    private isCloseTemplate: boolean = false;
     private cssStyle: object = {};
 
     // 回到主页时判断是否已创建页面，已创建则恢复，否则空白
@@ -53,12 +73,14 @@
 
     private showView(flag: boolean) {
       this.isShowView = flag;
+      if (flag && !this.isShowView) {
+        pageModule.resetPageData();
+      }
     }
 
     private checkIcon(type: string) {
       if (type === 'empty') {
         this.showView(false);
-        pageModule.resetPageData();
       } else if (type === 'preview') {
         this.$router.push('./preview');
         Bus.$emit('show-dialog', '', false);
@@ -102,6 +124,7 @@
     private cancel() {
       this.isClose = false;
       this.isCloseDownload = false;
+      this.isCloseTemplate = false;
     }
 
     private download() {
@@ -116,6 +139,21 @@
 
     private checkDownloadName(name: string, type: string) {
       download(name, type);
+    }
+
+    private choose() {
+      this.isCloseTemplate = true;
+    }
+
+    private checkTemplate(type: string) {
+      let templateTye: string = '';
+      if (TemplateMap.get(type) === 'load') {
+        templateTye = 'load';
+      } else {
+        templateTye = 'blog';
+      }
+      this.isShowView = true;
+      pageModule.chooseTemplate(pageTemplate[templateTye as 'load' | 'blog']);
     }
   }
 </script>
