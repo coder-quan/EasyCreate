@@ -12,8 +12,6 @@ import { register } from './eva';
 import { toCssStyle } from './utils/style';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/base.css';
-import '@/assets/css/normalize.css';
-
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 register();
