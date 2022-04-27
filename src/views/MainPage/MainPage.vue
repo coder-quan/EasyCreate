@@ -72,10 +72,10 @@
     // public activated() {}
 
     private showView(flag: boolean) {
-      this.isShowView = flag;
       if (flag && !this.isShowView) {
         pageModule.resetPageData();
       }
+      this.isShowView = flag;
     }
 
     private checkIcon(type: string) {
