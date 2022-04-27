@@ -1,8 +1,8 @@
 import { Style } from './ElementInterface';
 
 export interface ComponentStyle {
-  className: string[];
-  style: string[];
+  className: string;
+  style: Style | { [name: string]: string };
 }
 export interface Component {
   code: (tag: string, className: string, value?: string) => string;
@@ -10,5 +10,5 @@ export interface Component {
 }
 
 export interface TemplateComponents {
-  [name: string]: Component;
+  [name: string]: ComponentStyle[];
 }

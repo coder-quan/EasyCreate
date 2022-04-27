@@ -14,6 +14,11 @@
       @cancel="cancel"
     ></add-tag-tip>
     <setting-dialog></setting-dialog>
+    <download
+      :isClose="isCloseDownload"
+      @check="checkDownloadName"
+      @cancel="cancel"
+    ></download>
   </div>
 </template>
 
@@ -23,6 +28,7 @@
   import PreviewPage from '../PreviewPage/PreviewPage.vue';
   import AddTagTip from './components/AddTagTip.vue';
   import SettingDialog from './components/SettingDialog.vue';
+  import Download from './components/Download.vue';
   import { basisComponents, template } from '@/eva/data/Components';
   import { ElementInterface } from '@/eva/interface/ElementInterface';
   import { pageModule } from '@/store/modules/page';
@@ -33,12 +39,13 @@
 
   @Component({
     name: 'MainPage',
-    components: { MainView, PreviewPage, AddTagTip, SettingDialog },
+    components: { MainView, PreviewPage, AddTagTip, SettingDialog, Download },
   })
   export default class MainPage extends Vue {
     private isShowView: boolean = false;
     private component: string = '';
     private isClose: boolean = false;
+    private isCloseDownload: boolean = false;
     private cssStyle: object = {};
 
     // 回到主页时判断是否已创建页面，已创建则恢复，否则空白
@@ -94,10 +101,21 @@
 
     private cancel() {
       this.isClose = false;
+      this.isCloseDownload = false;
     }
 
     private download() {
-      download();
+      if (this.isShowView) {
+        this.isCloseDownload = true;
+      } else {
+        this.$alert('请先新建页面或选择模板', '', {
+          confirmButtonText: '确定',
+        });
+      }
+    }
+
+    private checkDownloadName(name: string, type: string) {
+      download(name, type);
     }
   }
 </script>

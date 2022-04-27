@@ -1,5 +1,5 @@
 <template>
-  <div class="radio">
+  <div>
     <input :class="classname" type="radio" name="easycreate" />
     <slot></slot>
   </div>
@@ -17,8 +17,4 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .radio {
-    display: inline-block;
-  }
-</style>
+<style lang="scss" scoped></style>

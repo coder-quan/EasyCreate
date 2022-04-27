@@ -576,6 +576,7 @@ export const components: Component = {
   sub: { value: {}, unit: {} },
   eaTable: {
     value: {
+      display: 'table',
       float: '',
       position: '',
       fontSize: '',

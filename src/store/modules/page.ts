@@ -22,6 +22,7 @@ class Page extends VuexModule {
     arr: [],
     style: {
       value: {
+        boxSizing: 'border-box',
         width: '100',
         height: '100',
         color: 'bfbfbf',

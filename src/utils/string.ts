@@ -18,5 +18,5 @@ export function camelToHyphene(camelStr: string) {
       return ' ' + s.toLowerCase();
     })
     .trim()
-    .replaceAll(' ', '_');
+    .replaceAll(' ', '-');
 }

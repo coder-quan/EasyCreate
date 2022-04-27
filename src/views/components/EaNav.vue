@@ -21,7 +21,6 @@
 
 <script lang="ts">
   import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
-  import { Style } from '@/eva/interface/ElementInterface';
 
   @Component({
     name: 'EaNav',
@@ -84,6 +83,7 @@
     display: none;
     position: absolute;
     left: 0;
+    z-index: 1000;
   }
 
   .nav li a:hover {
