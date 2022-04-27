@@ -4,11 +4,21 @@
     v-show="showSetting"
     class="setting"
     :style="{ '--top': top, '--left': left }"
-    draggable="true"
+    :draggable="isDraggable"
     @dragstart="dragstart"
     @dragover="dragover"
   >
     <div class="header">
+      <i
+        v-if="isDraggable"
+        class="el-icon-location-outline"
+        @click="change(false)"
+      ></i>
+      <i
+        v-if="!isDraggable"
+        class="el-icon-location-information"
+        @click="change(true)"
+      ></i>
       {{ this.className }}
       <i class="el-icon-close" @click="close"></i>
     </div>
@@ -56,6 +66,7 @@
     private left: string = '100px';
     private clientX: number = 0;
     private clientY: number = 0;
+    private isDraggable: boolean = true;
 
     private mounted() {
       Bus.$on('show-dialog', (className: string, flag: boolean) => {
@@ -111,6 +122,10 @@
     private changeText(text: string) {
       this.$set(this.element, 'text', text);
     }
+
+    private change(flag: boolean) {
+      this.isDraggable = flag;
+    }
   }
 </script>
 
@@ -135,13 +150,17 @@
       border-radius: 20px 20px 0 0;
       position: fixed;
       width: 398px;
-      padding-left: 44px;
       line-height: 44px;
       text-align: center;
       font-size: 24px;
       background-color: #fff;
       border-bottom: 1px solid #bfbfbf;
       z-index: 1000;
+      .el-icon-location-outline,
+      .el-icon-location-information {
+        float: left;
+        padding: 10px;
+      }
       .el-icon-close {
         float: right;
         padding: 10px;
