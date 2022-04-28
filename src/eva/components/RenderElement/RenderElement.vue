@@ -118,7 +118,7 @@
           },
           directives: [
             {
-              name: 'demo',
+              name: 'style',
               value: this.element,
             },
           ],

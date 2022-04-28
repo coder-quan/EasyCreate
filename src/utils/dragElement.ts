@@ -38,7 +38,9 @@ export async function addElement(
           item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
         }
       } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
-        item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+        if (item[index].arr?.length) {
+          item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+        }
       } else {
         if (position === 'left') {
           item.splice(index, 0, startItem.splice(startIndex, 1)[0]);

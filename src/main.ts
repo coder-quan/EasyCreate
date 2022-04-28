@@ -15,8 +15,8 @@ import '@/assets/css/base.css';
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
 register();
-Vue.directive('demo', {
-  bind(el, binding, vnode) {
+Vue.directive('style', {
+  bind(el, binding) {
     let style: string[] = Object.getOwnPropertyNames(binding.value.style.value);
     style.pop();
     if (style.length) {
@@ -29,7 +29,7 @@ Vue.directive('demo', {
       });
     }
   },
-  update(el, binding, vnode) {
+  update(el, binding) {
     let style: string[] = Object.getOwnPropertyNames(binding.value.style.value);
     style.pop();
     if (style.length) {
