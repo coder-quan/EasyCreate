@@ -113,8 +113,13 @@ export function getCss(cssStyle: ComponentStyle[]): string {
 export function download(name: string, type: string) {
   let code: string = getCode([pageModule.pageData]);
   let css = getCss(getBaseCss([pageModule.pageData]));
-  let aFileParts = [getHtml(code, css)]; // 一个包含DOMString的数组
-  let oMyBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
+  let aFileParts: string = ''; // 一个包含DOMString;的数组
+  if (type === 'html') {
+    aFileParts = getHtml(code, css);
+  } else {
+    aFileParts = getVue(name, code, css);
+  }
+  let oMyBlob = new Blob([aFileParts], { type: 'text/html' }); // 得到 blob
   let downloadElement = document.createElement('a');
   let href = window.URL.createObjectURL(oMyBlob); // 创建下载的链接
   downloadElement.href = href;
@@ -154,5 +159,7 @@ function getVue(name: string, code: string, css: string) {
   }
   </script>
 
-  <style></style>`;
+  <style scoped>
+  ${css}
+  </style>`;
 }
