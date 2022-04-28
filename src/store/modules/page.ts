@@ -225,6 +225,11 @@ class Page extends VuexModule {
   public changeClickClass(className: string) {
     this.Set_ClickClass(className);
   }
+
+  @Action
+  public resetClickClass() {
+    this.Set_ClickClass('first-div');
+  }
 }
 
 export const pageModule = getModule(Page);

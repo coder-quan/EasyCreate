@@ -113,8 +113,10 @@
           this.$alert('此节点为根节点，不可删除', '', {
             confirmButtonText: '确定',
           });
+        } else {
+          pageModule.resetClickClass();
+          item.splice(index, 1);
         }
-        item.splice(index, 1);
         this.showSetting = false;
       });
     }
