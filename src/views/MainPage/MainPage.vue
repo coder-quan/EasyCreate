@@ -81,6 +81,7 @@
     private checkIcon(type: string) {
       if (type === 'empty') {
         this.showView(false);
+        pageModule.changeClickClass('first-div');
         Bus.$emit('show-dialog', '', false);
       } else if (type === 'preview') {
         this.$router.push('./preview');
