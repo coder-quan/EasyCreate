@@ -17,8 +17,17 @@ export async function addElement(
     startIndex = index;
   });
   await catchItem(targetArray, targetElement, async function fn(item, index) {
-    await catchItem(startItem, targetElement, () => {
+    await catchItem(startItem, targetElement, async function fx() {
       isChildElement = true;
+      if (position === 'left') {
+        await catchItem(
+          [startItem[startIndex + 1]],
+          [item[index]?.class],
+          () => {
+            isChildElement = false;
+          }
+        );
+      }
     });
     if (!isChild(targetArray, startElement, targetElement)) {
       if (isChildElement) {
@@ -62,10 +71,12 @@ export function catchItem(
   fn: (targetArray: ElementInterface[], index: number) => void
 ) {
   targetArray.forEach((item, index) => {
-    if (className && className.indexOf(item.class) !== -1) {
-      fn(targetArray, index);
-    } else if (item.arr) {
-      catchItem(item.arr, className, fn);
+    if (item) {
+      if (className && className.indexOf(item.class) !== -1) {
+        fn(targetArray, index);
+      } else if (item.arr) {
+        catchItem(item.arr, className, fn);
+      }
     }
   });
 }
