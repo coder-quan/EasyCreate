@@ -97,7 +97,7 @@
   .setting-style {
     ::v-deep .text {
       margin: 5px 0;
-      width: 358px;
+      width: 370px;
       height: 36px;
       .el-input.el-input--small {
         width: 150px;
@@ -106,7 +106,7 @@
     }
     .setting-item {
       margin: 5px 0;
-      width: 358px;
+      width: 370px;
       height: 36px;
       .el-input.el-input--small {
         width: 150px;
