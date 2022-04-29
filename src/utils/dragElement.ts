@@ -38,7 +38,7 @@ export async function addElement(
           item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
         }
       } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
-        if (item[index].arr?.length) {
+        if (item[index].arr?.length !== undefined) {
           item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
         }
       } else {
