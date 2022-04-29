@@ -180,7 +180,7 @@ export const Attrs: Attribute = {
     type: 'input',
     value: ['px', '%', 'vh', 'vw'],
   },
-  opcity: {
+  opacity: {
     type: 'input',
     value: [],
   },
@@ -337,7 +337,7 @@ const common: object = {
   fontStyle: 'normal',
   fontWeight: '',
   zIndex: '',
-  opcity: '',
+  opacity: '',
 };
 
 const commonComponent: object = {
@@ -590,7 +590,7 @@ export const components: Component = {
       marginBottom: '',
       marginLeft: '',
       zIndex: 0,
-      opcity: '',
+      opacity: '',
     },
     unit: {
       fontSize: 'px',
@@ -620,7 +620,7 @@ export const components: Component = {
       marginBottom: '',
       marginLeft: '',
       zIndex: 0,
-      opcity: '',
+      opacity: '',
     },
     unit: {
       fontSize: 'px',
@@ -650,7 +650,7 @@ export const components: Component = {
       marginBottom: '',
       marginLeft: '',
       zIndex: 0,
-      opcity: '',
+      opacity: '',
     },
     unit: {
       fontSize: 'px',
@@ -672,7 +672,7 @@ export const components: Component = {
       borderWidth: '',
       borderStyle: '',
       borderColor: '',
-      opcity: '',
+      opacity: '',
       overFllowX: '',
       overFllowY: '',
       scrollBehavior: '',
@@ -694,7 +694,7 @@ export const components: Component = {
       borderWidth: '',
       borderStyle: '',
       borderColor: '',
-      opcity: '',
+      opacity: '',
       overFllowX: '',
       overFllowY: '',
       scrollBehavior: '',
