@@ -560,15 +560,15 @@ export const components: Component = {
     unit: { letterSpacing: 'px', ...commonUnits, ...componentUnits },
   },
   strong: {
-    value: { letterSpacing: '', ...common, ...commonComponent },
+    value: { letterSpacing: '', ...common, fontStyle: '', ...commonComponent },
     unit: { letterSpacing: 'px', ...commonUnits, ...componentUnits },
   },
   i: {
-    value: { letterSpacing: '', ...common, ...commonComponent },
+    value: { letterSpacing: '', ...common, fontStyle: '', ...commonComponent },
     unit: { letterSpacing: 'px', ...commonUnits, ...componentUnits },
   },
   s: {
-    value: { letterSpacing: '', ...common, ...commonComponent },
+    value: { letterSpacing: '', ...common, fontStyle: '', ...commonComponent },
     unit: { letterSpacing: 'px', ...commonUnits, ...componentUnits },
   },
   hr: { value: {}, unit: {} },

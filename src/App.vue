@@ -5,7 +5,7 @@
 -->
 <template>
   <div id="app">
-    <keep-alive>
+    <keep-alive exclude="PreviewPage">
       <div id="nav" v-if="isMobile">暂不支持移动端，请使用电脑访问</div>
       <router-view v-else />
     </keep-alive>
