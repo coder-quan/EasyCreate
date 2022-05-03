@@ -11,43 +11,45 @@ import { Style } from '@/eva/interface/ElementInterface';
 export function getCode(data: ElementInterface[], code?: string): string {
   let result: string = '';
   data.forEach((item) => {
-    if (item.arr?.length) {
-      let array: ElementInterface[] = [];
-      let temporary: string = getCode(item.arr);
-      array = item.arr.splice(0);
-      result += getCode([item], temporary);
-      item.arr.splice(0, 0, ...array);
-    } else {
-      if (camelToHyphene(item.html) === 'input' && item.text) {
-        result += Component.prototype.singleTag(
-          item.html,
-          item.class,
-          item.text,
-          'text'
-        );
-      } else if (camelToHyphene(item.html) === 'ea-password' && item.text) {
-        result += Component.prototype.singleTag(
-          'input',
-          item.class,
-          item.text,
-          'password'
-        );
-      } else if (
-        specialElement.includes(camelToHyphene(item.html)) &&
-        item.text
-      ) {
-        result += Component.prototype.componentTag(
-          item.html,
-          item.class,
-          item.text
-        );
+    if (item) {
+      if (item.arr?.length) {
+        let array: ElementInterface[] = [];
+        let temporary: string = getCode(item.arr);
+        array = item.arr.splice(0);
+        result += getCode([item], temporary);
+        item.arr.splice(0, 0, ...array);
       } else {
-        result += Component.prototype.doubleTag(
-          item.html,
-          item.class,
-          item.text,
-          code
-        );
+        if (camelToHyphene(item.html) === 'input' && item.text) {
+          result += Component.prototype.singleTag(
+            item.html,
+            item.class,
+            item.text,
+            'text'
+          );
+        } else if (camelToHyphene(item.html) === 'ea-password' && item.text) {
+          result += Component.prototype.singleTag(
+            'input',
+            item.class,
+            item.text,
+            'password'
+          );
+        } else if (
+          specialElement.includes(camelToHyphene(item.html)) &&
+          item.text
+        ) {
+          result += Component.prototype.componentTag(
+            item.html,
+            item.class,
+            item.text
+          );
+        } else {
+          result += Component.prototype.doubleTag(
+            item.html,
+            item.class,
+            item.text,
+            code
+          );
+        }
       }
     }
   });

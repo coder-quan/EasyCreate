@@ -16,7 +16,7 @@ export async function addElement(
     startItem = item;
     startIndex = index;
   });
-  await catchItem(targetArray, targetElement, async function fn(item, index) {
+  catchItem(targetArray, targetElement, async function fn(item, index) {
     await catchItem(startItem, targetElement, async function fx() {
       isChildElement = true;
       if (position === 'left') {
@@ -30,32 +30,47 @@ export async function addElement(
       }
     });
     if (!isChild(targetArray, startElement, targetElement)) {
+      let result: ElementInterface = {
+        html: '',
+        class: '',
+        style: { unit: {}, value: {} },
+      };
+      let resultIndex: number = 0;
+      let pushFlag: boolean = false;
       if (isChildElement) {
         if (position === 'left') {
           if (index > startIndex) {
-            item.splice(index, 0, startItem.splice(startIndex + 1, 1)[0]);
+            result = startItem.splice(startIndex + 1, 1)[0];
+            resultIndex = index;
           } else {
-            item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+            result = startItem.splice(startIndex, 1)[0];
+            resultIndex = index;
           }
         } else if (position === 'right') {
           if (index > startIndex) {
-            item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+            result = startItem.splice(startIndex, 1)[0];
+            resultIndex = index;
           } else {
-            item.splice(index + 1, 0, startItem.splice(startIndex, 1)[0]);
+            result = startItem.splice(startIndex, 1)[0];
+            resultIndex = index + 1;
           }
         } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
-          item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+          pushFlag = true;
         }
       } else if (hasNotSubtag.indexOf(item[index].html) === -1) {
         if (item[index].arr?.length !== undefined) {
-          item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+          pushFlag = true;
         }
       } else {
-        if (position === 'left') {
-          item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
-        } else if (position === 'right') {
-          item.splice(index, 0, startItem.splice(startIndex, 1)[0]);
+        if (position === 'left' || position === 'right') {
+          result = startItem.splice(startIndex, 1)[0];
+          resultIndex = index;
         }
+      }
+      if (pushFlag) {
+        item[index].arr?.push(startItem.splice(startIndex, 1)[0]);
+      } else if (result && result.html) {
+        item.splice(resultIndex, 0, result);
       }
     }
     return item[index];
