@@ -36,14 +36,14 @@ class Theme extends VuexModule implements ThemeState {
   }
 
   @Action
-  public async ResetTheme(color: string = '#BFC3C3') {
+  public async ResetTheme(color: string = '#403C3C') {
     localStorage.setItem('theme', color);
     await this.Set_Theme(color);
     await this.GetTheme();
   }
 
   @Action
-  public async ResetColor(themeColor: string = '#403C3C') {
+  public async ResetColor(themeColor: string = '#BFC3C3') {
     let color: string = '';
     if (themeColor.length === 4) {
       let result: string = '#';

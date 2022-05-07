@@ -34,6 +34,8 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
+  import NavBar from '@/eva/components/NavBar/NavBar.vue';
+  import PackageMenu from '@/eva/components/PackageMenu/PackageMenu.vue';
   import MainView from './components/MainView.vue';
   import PreviewPage from '../PreviewPage/PreviewPage.vue';
   import AddTagTip from './components/AddTagTip.vue';
@@ -52,7 +54,9 @@
   @Component({
     name: 'MainPage',
     components: {
+      NavBar,
       MainView,
+      PackageMenu,
       PreviewPage,
       AddTagTip,
       SettingDialog,

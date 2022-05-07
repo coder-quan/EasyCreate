@@ -18,9 +18,11 @@
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator';
   import { pageModule } from '@/store/modules/page';
+  import RenderElement from '@/eva/components/RenderElement/RenderElement.vue';
 
   @Component({
     name: 'PreviewPage',
+    components: { RenderElement },
   })
   export default class PreviewPage extends Vue {
     private arr: object[] = [];
