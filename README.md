@@ -5,6 +5,10 @@
 - 安装依赖 npm install
 - 本地开发 启动项目 npm run serve
 
+# 在线预览地址
+
+- [https://coder-quan.github.io/easy-create/#/main](https://coder-quan.github.io/easy-create/#/main)
+
 # 目录详解
 
 src 目录下
