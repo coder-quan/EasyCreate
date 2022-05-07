@@ -118,6 +118,7 @@
       ::v-deep .el-select.is-color {
         margin-left: 15px;
         .el-input__inner {
+          width: 150px;
           height: 32px;
         }
       }
