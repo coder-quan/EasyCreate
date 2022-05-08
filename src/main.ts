@@ -11,8 +11,10 @@ import ElementUI from 'element-ui';
 import { toCssStyle } from './utils/style';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/css/base.css';
+import { register } from '@/eva/index';
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
+register();
 
 Vue.directive('style', {
   bind(el, binding) {
