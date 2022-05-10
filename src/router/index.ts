@@ -8,6 +8,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import MainPage from '../views/MainPage/MainPage.vue';
 import Error from '../views/Error/Error.vue';
 import PreviewPage from '../views/PreviewPage/PreviewPage.vue';
+import Introduce from '../views/Introduce/Introduce.vue';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
@@ -30,6 +31,15 @@ const routes: RouteConfig[] = [
     component: PreviewPage,
     beforeEnter(to, from, next) {
       document.title = '预览';
+      next();
+    },
+  },
+  {
+    path: '/introduce',
+    name: 'introduce',
+    component: Introduce,
+    beforeEnter(to, from, next) {
+      document.title = '介绍';
       next();
     },
   },

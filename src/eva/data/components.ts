@@ -9,7 +9,6 @@ export const hasNotSubtag: string[] = [
   'ea-table',
   'ea-nav',
   'ea-merry-go-round',
-  'ea-select',
 ];
 
 // 特殊元素，文本只能通过value属性传值
