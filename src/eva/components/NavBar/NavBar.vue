@@ -13,6 +13,9 @@
       </div>
       <div class="center">EasyCreate</div>
       <div class="right">
+        <el-tooltip effect="light" content="平台介绍">
+          <i class="el-icon-question" @click="turnIntroduce"></i>
+        </el-tooltip>
         <el-button size="mini" @click="check('download')">
           导出页面
           <i class="el-icon-download"></i>
@@ -62,6 +65,10 @@
       } else if (type === 'choose' && !this.isShowView) {
         this.choose();
       }
+    }
+
+    private turnIntroduce() {
+      this.$router.push('/introduce');
     }
 
     @Emit('on-add')
@@ -122,6 +129,9 @@
     }
     ::v-deep .right {
       justify-content: flex-end;
+      .el-icon-question {
+        line-height: 36px;
+      }
       .el-color-picker {
         line-height: var(--navbar-line-height);
         padding-right: 30px;
