@@ -1,6 +1,10 @@
 <template>
   <div class="instructions">
-    <el-page-header @back="backHome" content="主页"></el-page-header>
+    <el-page-header
+      :style="{ '--color': theme, '--font-color': color }"
+      @back="backHome"
+      content="主页"
+    ></el-page-header>
     <div class="main-instructions">
       <div v-for="(item, index) in detail" :key="index">
         <h1>{{ item.title }}</h1>
@@ -15,6 +19,8 @@
 
 <script lang="ts">
   import { Vue, Component } from 'vue-property-decorator';
+  import { themeModule } from '@/store/modules/theme';
+
   @Component({
     name: 'Introduce',
   })
@@ -59,6 +65,15 @@
         ],
       },
     ];
+
+    private theme: string = '#403C3C';
+    private color: string = '#BFC3C3';
+
+    private activated() {
+      this.theme = themeModule.theme;
+      this.color = themeModule.fontColor;
+    }
+
     private backHome() {
       this.$router.replace('/main');
     }

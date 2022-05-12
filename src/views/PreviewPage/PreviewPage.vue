@@ -2,6 +2,7 @@
   <div class="view">
     <el-page-header
       v-if="isPreview"
+      :style="{ '--color': theme, '--font-color': color }"
       @back="goBack"
       content="主页"
     ></el-page-header>
@@ -18,18 +19,24 @@
 <script lang="ts">
   import { Vue, Component, Prop } from 'vue-property-decorator';
   import { pageModule } from '@/store/modules/page';
+  import { themeModule } from '@/store/modules/theme';
 
   @Component({
     name: 'PreviewPage',
   })
   export default class PreviewPage extends Vue {
     private arr: object[] = [];
+    private theme: string = '#403C3C';
+    private color: string = '#BFC3C3';
+
     // 是否预览
     @Prop({ type: Boolean, default: true })
     private readonly isPreview!: boolean;
 
     private created() {
       this.arr = [pageModule.pageData];
+      this.theme = themeModule.theme;
+      this.color = themeModule.fontColor;
     }
     private goBack() {
       this.$router.push('/main');
