@@ -1,7 +1,7 @@
 <template>
   <div class="instructions">
     <el-page-header
-      :style="{ '--color': theme }"
+      :style="{ '--color': theme, '--font-color': color }"
       @back="backHome"
       content="主页"
     ></el-page-header>
@@ -67,9 +67,11 @@
     ];
 
     private theme: string = '#403C3C';
+    private color: string = '#BFC3C3';
 
-    private created() {
+    private activated() {
       this.theme = themeModule.theme;
+      this.color = themeModule.fontColor;
     }
 
     private backHome() {
